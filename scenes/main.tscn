@@ -1,23 +1,43 @@
 [gd_scene format=3 uid="uid://bkf2bfjxotal"]
 
 [ext_resource type="PackedScene" uid="uid://2mtod6nrr0nl" path="res://scenes/levels/level_1.tscn" id="1_o5qli"]
+[ext_resource type="Script" uid="uid://4k65s3jlf42h" path="res://scenes/high_res_camera.gd" id="2_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://c6y0y31c37leu" path="res://scenes/GUI/menu_pause/pause_menu.tscn" id="3_sugp2"]
 
 [node name="Main" type="Node2D" unique_id=853285836]
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=867650428]
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1467245354]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=999030355]
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=313727959]
+disable_3d = true
 handle_input_locally = false
+canvas_item_default_texture_filter = 0
+audio_listener_enable_2d = true
+size = Vector2i(1920, 1080)
 render_target_update_mode = 4
 
 [node name="Level1" parent="SubViewportContainer/SubViewport" unique_id=661237016 instance=ExtResource("1_o5qli")]
 
-[node name="HighResCamera" type="Camera2D" parent="." unique_id=387807647]
+[node name="Player" parent="SubViewportContainer/SubViewport/Level1" index="1" unique_id=1344830218 node_paths=PackedStringArray("pause_menu")]
+pause_menu = NodePath("../../../../GUI/PauseMenu")
 
-[node name="GUI" type="Control" parent="." unique_id=640431630]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="HighResCamera" type="Camera2D" parent="." unique_id=817473116 node_paths=PackedStringArray("player", "sub_viewport_container")]
+position = Vector2(960, 540)
+script = ExtResource("2_0wfyh")
+player = NodePath("../SubViewportContainer/SubViewport/Level1/Player")
+sub_viewport_container = NodePath("../SubViewportContainer")
+
+[node name="GUI" type="CanvasLayer" parent="." unique_id=2022569888]
+
+[node name="PauseMenu" parent="GUI" unique_id=301034208 instance=ExtResource("3_sugp2")]
+visible = false
+
+[editable path="SubViewportContainer/SubViewport/Level1"]
