@@ -1,0 +1,117 @@
+[gd_scene format=3 uid="uid://c6y0y31c37leu"]
+
+[ext_resource type="Theme" uid="uid://d1bw2vv0qhi5y" path="res://scenes/GUI/menu_theme.tres" id="1_i6nle"]
+[ext_resource type="Script" uid="uid://c5ssl23j1fvm6" path="res://scenes/GUI/menu_pause/pause_menu.gd" id="2_3fn7a"]
+[ext_resource type="FontFile" uid="uid://chlnk21uq08pi" path="res://assets/fonts/GrapeSoda.ttf" id="3_3fn7a"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ym5t1"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pfkhp"]
+bg_color = Color(0.63529414, 0.63529414, 0.63529414, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.20392157)
+shadow_size = 5
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wvb65"]
+bg_color = Color(0.8235294, 0.8235294, 0.8235294, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.20392157)
+shadow_size = 5
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qvwyg"]
+
+[node name="PauseMenu" type="Control" unique_id=301034208]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_3fn7a")
+
+[node name="Label" type="Label" parent="." unique_id=698744547]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -660.0
+offset_top = 114.0
+offset_right = 660.0
+offset_bottom = 387.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 12
+theme_override_fonts/font = ExtResource("3_3fn7a")
+theme_override_font_sizes/font_size = 240
+text = "Pausa"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1221812543]
+layout_mode = 0
+offset_left = 788.0
+offset_top = 428.0
+offset_right = 1131.0
+offset_bottom = 768.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_i6nle")
+
+[node name="ContinueButton" type="Button" parent="VBoxContainer" unique_id=778548032]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_ym5t1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pfkhp")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wvb65")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qvwyg")
+text = "Continuar"
+
+[node name="OptionsButton" type="Button" parent="VBoxContainer" unique_id=124768177]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_ym5t1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pfkhp")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wvb65")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qvwyg")
+text = "Opciones"
+
+[node name="ExitButton" type="Button" parent="VBoxContainer" unique_id=1725572409]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_ym5t1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pfkhp")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wvb65")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qvwyg")
+text = "Salir"
+
+[connection signal="pressed" from="VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
