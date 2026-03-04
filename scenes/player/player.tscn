@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://d3wnvedv0o5bj"]
+
+[ext_resource type="Script" uid="uid://cp1ryrtbcw8ex" path="res://scenes/player/player.gd" id="1_gmlin"]
+[ext_resource type="Texture2D" uid="uid://bxxsoqp4dti08" path="res://assets/sprites/player/player_left.png" id="2_lvxji"]
+[ext_resource type="Texture2D" uid="uid://dtajbp1ne48yl" path="res://assets/sprites/player/player_right.png" id="3_p47bc"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sh265"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_75vfm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_lvxji")
+}],
+"loop": true,
+"name": &"idle_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_p47bc")
+}],
+"loop": true,
+"name": &"idle_right",
+"speed": 5.0
+}]
+
+[node name="Player" type="CharacterBody2D" unique_id=1344830218]
+script = ExtResource("1_gmlin")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1208859658]
+shape = SubResource("CapsuleShape2D_sh265")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=730657395]
+sprite_frames = SubResource("SpriteFrames_75vfm")
+animation = &"idle_right"
