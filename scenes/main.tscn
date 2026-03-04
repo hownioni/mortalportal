@@ -1,10 +1,14 @@
 [gd_scene format=3 uid="uid://bkf2bfjxotal"]
 
+[ext_resource type="Script" uid="uid://bkilhvqkr6j1p" path="res://scenes/main.gd" id="1_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://2mtod6nrr0nl" path="res://scenes/levels/level_1.tscn" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://4k65s3jlf42h" path="res://scenes/high_res_camera.gd" id="2_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://c6y0y31c37leu" path="res://scenes/GUI/menu_pause/pause_menu.tscn" id="3_sugp2"]
 
-[node name="Main" type="Node2D" unique_id=853285836]
+[node name="Main" type="Node2D" unique_id=853285836 node_paths=PackedStringArray("sub_viewport")]
+script = ExtResource("1_jyhfs")
+levels = Array[PackedScene]([ExtResource("1_o5qli")])
+sub_viewport = NodePath("SubViewportContainer/SubViewport")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1467245354]
 anchors_preset = 15
@@ -24,20 +28,12 @@ audio_listener_enable_2d = true
 size = Vector2i(1920, 1080)
 render_target_update_mode = 4
 
-[node name="Level1" parent="SubViewportContainer/SubViewport" unique_id=661237016 instance=ExtResource("1_o5qli")]
-
-[node name="Player" parent="SubViewportContainer/SubViewport/Level1" index="1" unique_id=1344830218 node_paths=PackedStringArray("pause_menu")]
-pause_menu = NodePath("../../../../GUI/PauseMenu")
-
-[node name="HighResCamera" type="Camera2D" parent="." unique_id=817473116 node_paths=PackedStringArray("player", "sub_viewport_container")]
+[node name="HighResCamera" type="Camera2D" parent="." unique_id=817473116 node_paths=PackedStringArray("sub_viewport_container")]
 position = Vector2(960, 540)
 script = ExtResource("2_0wfyh")
-player = NodePath("../SubViewportContainer/SubViewport/Level1/Player")
 sub_viewport_container = NodePath("../SubViewportContainer")
 
 [node name="GUI" type="CanvasLayer" parent="." unique_id=2022569888]
 
 [node name="PauseMenu" parent="GUI" unique_id=301034208 instance=ExtResource("3_sugp2")]
 visible = false
-
-[editable path="SubViewportContainer/SubViewport/Level1"]

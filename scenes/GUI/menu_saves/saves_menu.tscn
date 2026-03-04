@@ -1,25 +1,25 @@
-[gd_scene format=3 uid="uid://5tfxd7k8j7qs"]
+[gd_scene format=3 uid="uid://bvapjl3scy3oj"]
 
-[ext_resource type="Script" uid="uid://cfltoifip86fj" path="res://scenes/GUI/menu_main/main_menu.gd" id="1_ds0kv"]
-[ext_resource type="FontFile" uid="uid://chlnk21uq08pi" path="res://assets/fonts/GrapeSoda.ttf" id="1_vc5wb"]
-[ext_resource type="Theme" uid="uid://d1bw2vv0qhi5y" path="res://scenes/GUI/menu_theme.tres" id="3_7hvb7"]
+[ext_resource type="FontFile" uid="uid://chlnk21uq08pi" path="res://assets/fonts/GrapeSoda.ttf" id="1_60d8y"]
+[ext_resource type="Script" uid="uid://dk5eovq7ntqig" path="res://scenes/GUI/menu_saves/saves_menu.gd" id="1_u3725"]
+[ext_resource type="Theme" uid="uid://d1bw2vv0qhi5y" path="res://scenes/GUI/menu_theme.tres" id="2_u3725"]
 
-[sub_resource type="Gradient" id="Gradient_7hvb7"]
+[sub_resource type="Gradient" id="Gradient_ds0kv"]
 offsets = PackedFloat32Array(0, 0.35456294, 0.636832, 1)
 colors = PackedColorArray(0.21960784, 0.24705882, 0.31764707, 1, 0.4017946, 0.41930813, 0.494313, 1, 0.6310071, 0.6360181, 0.7165796, 1, 0.8666667, 0.85882354, 0.94509804, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_7hvb7"]
-gradient = SubResource("Gradient_7hvb7")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3wst1"]
+gradient = SubResource("Gradient_ds0kv")
 fill_to = Vector2(1, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vc5wb"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q1sj5"]
 bg_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ds0kv"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mrbsi"]
 bg_color = Color(0.63529414, 0.63529414, 0.63529414, 1)
 corner_radius_top_left = 16
 corner_radius_top_right = 16
@@ -29,7 +29,7 @@ shadow_color = Color(0, 0, 0, 0.20392157)
 shadow_size = 5
 shadow_offset = Vector2(0, 4)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7hvb7"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_16fmx"]
 bg_color = Color(0.8235294, 0.8235294, 0.8235294, 1)
 corner_radius_top_left = 16
 corner_radius_top_right = 16
@@ -39,9 +39,9 @@ shadow_color = Color(0, 0, 0, 0.20392157)
 shadow_size = 5
 shadow_offset = Vector2(0, 4)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vc5wb"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qud5n"]
 
-[node name="MainMenu" type="Control" unique_id=1922916655]
+[node name="SavesMenu" type="Control" unique_id=2052832100]
 process_mode = 2
 layout_mode = 3
 anchors_preset = 15
@@ -49,18 +49,18 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_ds0kv")
+script = ExtResource("1_u3725")
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=239304589]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1928386489]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("GradientTexture2D_7hvb7")
+texture = SubResource("GradientTexture2D_3wst1")
 
-[node name="Label" type="Label" parent="." unique_id=594773121]
+[node name="Label" type="Label" parent="." unique_id=1748708996]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -75,13 +75,13 @@ size_flags_vertical = 0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 12
-theme_override_fonts/font = ExtResource("1_vc5wb")
+theme_override_fonts/font = ExtResource("1_60d8y")
 theme_override_font_sizes/font_size = 240
-text = "Mortal Portal"
+text = "Nueva Partida"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=857922984]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=29118932]
 layout_mode = 0
 offset_left = 788.0
 offset_top = 428.0
@@ -89,60 +89,59 @@ offset_right = 1131.0
 offset_bottom = 768.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme = ExtResource("3_7hvb7")
+theme = ExtResource("2_u3725")
 
-[node name="StartButton" type="Button" parent="VBoxContainer" unique_id=585785975]
+[node name="S1Button" type="Button" parent="VBoxContainer" unique_id=119289951]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxFlat_vc5wb")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_ds0kv")
-theme_override_styles/hover = SubResource("StyleBoxFlat_7hvb7")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_vc5wb")
-text = "Inicio"
+theme_override_styles/normal = SubResource("StyleBoxFlat_q1sj5")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_mrbsi")
+theme_override_styles/hover = SubResource("StyleBoxFlat_16fmx")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qud5n")
+text = "Partida 1"
 
-[node name="ContinueButton" type="Button" parent="VBoxContainer" unique_id=1638744370]
+[node name="S2Button" type="Button" parent="VBoxContainer" unique_id=1649402462]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxFlat_vc5wb")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_ds0kv")
-theme_override_styles/hover = SubResource("StyleBoxFlat_7hvb7")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_vc5wb")
-text = "Continuar"
+theme_override_styles/normal = SubResource("StyleBoxFlat_q1sj5")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_mrbsi")
+theme_override_styles/hover = SubResource("StyleBoxFlat_16fmx")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qud5n")
+text = "Partida 2"
 
-[node name="OptionsButton" type="Button" parent="VBoxContainer" unique_id=275228541]
+[node name="S3Button" type="Button" parent="VBoxContainer" unique_id=1465968150]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxFlat_vc5wb")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_ds0kv")
-theme_override_styles/hover = SubResource("StyleBoxFlat_7hvb7")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_vc5wb")
-text = "Opciones"
+theme_override_styles/normal = SubResource("StyleBoxFlat_q1sj5")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_mrbsi")
+theme_override_styles/hover = SubResource("StyleBoxFlat_16fmx")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qud5n")
+text = "Partida 3"
 
-[node name="ExitButton" type="Button" parent="VBoxContainer" unique_id=1250095656]
+[node name="ExitButton" type="Button" parent="VBoxContainer" unique_id=2117279944]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxFlat_vc5wb")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_ds0kv")
-theme_override_styles/hover = SubResource("StyleBoxFlat_7hvb7")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_vc5wb")
-text = "Salir"
+theme_override_styles/normal = SubResource("StyleBoxFlat_q1sj5")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_mrbsi")
+theme_override_styles/hover = SubResource("StyleBoxFlat_16fmx")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qud5n")
+text = "Atrás"
 
-[connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/S1Button" to="." method="_on_s_1_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
