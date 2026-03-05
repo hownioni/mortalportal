@@ -1,9 +1,14 @@
 extends Node
 
-const save_file_name: String = "user://save.jsons"
-const default_dictionary: Dictionary = {"level": 1, "time_elapsed": 0.0}
+var curr_save_file: int = 0
+var save_file_name: String = "user://save.json"
+const default_dictionary: Dictionary = {
+    "level": 1,
+    "time_elapsed": 0.0
+}
 
-func save_game(data: Dictionary) -> void:
+func save_game(save_num:int, data: Dictionary) -> void:
+    save_file_name = "user://save" + str(save_num) + ".json"
     var save_file: FileAccess = FileAccess.open(save_file_name, FileAccess.WRITE)
     if save_file == null:
         push_error("Error opening file")
@@ -13,7 +18,8 @@ func save_game(data: Dictionary) -> void:
     save_file.store_line(string_data)
     save_file.close()
     
-func load_game() -> Dictionary:
+func load_game(save_num:int) -> Dictionary:
+    save_file_name = "user://save" + str(save_num) + ".json"
     if FileAccess.file_exists(save_file_name):
         var save_file: FileAccess = FileAccess.open(save_file_name, FileAccess.READ)
         if save_file == null:
@@ -31,5 +37,5 @@ func load_game() -> Dictionary:
 
     return default_dictionary
 
-func reset_game() -> void:
-    save_game(default_dictionary)
+func reset_game(save_num: int) -> void:
+    save_game(save_num, default_dictionary)

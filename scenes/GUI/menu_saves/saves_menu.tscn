@@ -4,12 +4,12 @@
 [ext_resource type="Script" uid="uid://dk5eovq7ntqig" path="res://scenes/GUI/menu_saves/saves_menu.gd" id="1_u3725"]
 [ext_resource type="Theme" uid="uid://d1bw2vv0qhi5y" path="res://scenes/GUI/menu_theme.tres" id="2_u3725"]
 
-[sub_resource type="Gradient" id="Gradient_ds0kv"]
+[sub_resource type="Gradient" id="Gradient_u3725"]
 offsets = PackedFloat32Array(0, 0.35456294, 0.636832, 1)
 colors = PackedColorArray(0.21960784, 0.24705882, 0.31764707, 1, 0.4017946, 0.41930813, 0.494313, 1, 0.6310071, 0.6360181, 0.7165796, 1, 0.8666667, 0.85882354, 0.94509804, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_3wst1"]
-gradient = SubResource("Gradient_ds0kv")
+gradient = SubResource("Gradient_u3725")
 fill_to = Vector2(1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q1sj5"]
@@ -144,4 +144,6 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_qud5n")
 text = "Atrás"
 
 [connection signal="pressed" from="VBoxContainer/S1Button" to="." method="_on_s_1_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/S2Button" to="." method="_on_s_2_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/S3Button" to="." method="_on_s_3_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
