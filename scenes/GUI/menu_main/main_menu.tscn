@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://cfltoifip86fj" path="res://scenes/GUI/menu_main/main_menu.gd" id="1_ds0kv"]
 [ext_resource type="FontFile" uid="uid://chlnk21uq08pi" path="res://assets/fonts/GrapeSoda.ttf" id="1_vc5wb"]
-[ext_resource type="Theme" uid="uid://d1bw2vv0qhi5y" path="res://scenes/GUI/menu_theme.tres" id="3_7hvb7"]
 
 [sub_resource type="Gradient" id="Gradient_7hvb7"]
 offsets = PackedFloat32Array(0, 0.35456294, 0.636832, 1)
@@ -89,7 +88,6 @@ offset_right = 1131.0
 offset_bottom = 768.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme = ExtResource("3_7hvb7")
 
 [node name="StartButton" type="Button" parent="VBoxContainer" unique_id=585785975]
 layout_mode = 2
