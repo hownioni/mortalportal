@@ -1,7 +1,10 @@
 extends Node
 
 const save_file_name: String = "user://save.jsons"
-const default_dictionary: Dictionary = {"level": 1, "time_elapsed": 0.0}
+const default_dictionary: Dictionary = {
+    "level": 1,
+    "time_elapsed": 0.0
+}
 
 func save_game(data: Dictionary) -> void:
     var save_file: FileAccess = FileAccess.open(save_file_name, FileAccess.WRITE)
@@ -27,7 +30,9 @@ func load_game() -> Dictionary:
             var data: Dictionary = json.get_data()
             save_file.close()
             return data
-        push_error("Corrupted data")
+        else:
+            push_error("Corrupted data")
+            return default_dictionary
 
     return default_dictionary
 

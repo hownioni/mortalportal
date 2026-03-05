@@ -1,6 +1,5 @@
 extends Camera2D
 
-
 @export var sub_viewport_container: SubViewportContainer
 @export var smooth_speed := 3.0
 @export var velocity_influence := 0.2

@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://c6y0y31c37leu"]
 
-[ext_resource type="Theme" uid="uid://d1bw2vv0qhi5y" path="res://scenes/GUI/menu_theme.tres" id="1_i6nle"]
 [ext_resource type="Script" uid="uid://c5ssl23j1fvm6" path="res://scenes/GUI/menu_pause/pause_menu.gd" id="2_3fn7a"]
 [ext_resource type="FontFile" uid="uid://chlnk21uq08pi" path="res://assets/fonts/GrapeSoda.ttf" id="3_3fn7a"]
 
@@ -72,7 +71,6 @@ offset_right = 1131.0
 offset_bottom = 768.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme = ExtResource("1_i6nle")
 
 [node name="ContinueButton" type="Button" parent="VBoxContainer" unique_id=778548032]
 layout_mode = 2

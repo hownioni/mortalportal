@@ -9,7 +9,6 @@ var _insted_lvl: Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-    var dict: Dictionary = SaveManager.load_game()
     _create_lvl(_curr_lvl)
 
 func _create_lvl(lvl_num: int) -> void:
