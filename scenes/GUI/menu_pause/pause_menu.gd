@@ -3,7 +3,7 @@ class_name PauseMenu
 
 func _ready() -> void:
     SceneManager.game_paused.connect(_on_scene_manager_game_paused)
-    
+
 func _on_scene_manager_game_paused() -> void:
     self.visible = true
 
