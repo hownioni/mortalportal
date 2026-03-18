@@ -40,6 +40,10 @@ func _physics_process(delta: float) -> void:
 
     global_position = global_position.round()
 
+func _input(event: InputEvent) -> void:
+    if event.is_action_pressed("inc_lvl_test"):
+        pass
+
 func _on_killzone_body_angered() -> void:
     _is_dead = true
     animated_sprite_2d.stop()
