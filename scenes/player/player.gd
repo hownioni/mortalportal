@@ -1,20 +1,22 @@
 extends CharacterBody2D
+class_name Player
+
+signal player_died
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 const SPEED := 300.0
 const JUMP_VELOCITY := -350.0
 
-@export var pause_menu: PauseMenu
+var _is_dead: bool = false
 
 func _ready() -> void:
-    add_to_group("Player")
-
-func _input(event: InputEvent) -> void:
-    if event.is_action_pressed("pause"):
-        SceneManager.pause_game(true)
+    add_to_group("characters")
 
 func _physics_process(delta: float) -> void:
+    if _is_dead:
+        return
+
     # Add the gravity.
     if not is_on_floor():
         velocity += get_gravity() * delta
@@ -37,3 +39,8 @@ func _physics_process(delta: float) -> void:
     move_and_slide()
 
     global_position = global_position.round()
+
+func _on_killzone_body_angered() -> void:
+    _is_dead = true
+    animated_sprite_2d.stop()
+    player_died.emit()
