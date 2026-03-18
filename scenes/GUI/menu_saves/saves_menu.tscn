@@ -59,7 +59,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_3wst1")
 
-[node name="Label" type="Label" parent="." unique_id=1748708996]
+[node name="Title" type="Label" parent="." unique_id=1748708996]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -76,27 +76,32 @@ theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 12
 theme_override_fonts/font = ExtResource("1_60d8y")
 theme_override_font_sizes/font_size = 240
-text = "Nueva Partida"
+text = "Partidas"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=29118932]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=186786460]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -171.5
-offset_top = -170.0
-offset_right = 171.5
-offset_bottom = 170.0
+offset_left = -255.5
+offset_top = -22.5
+offset_right = 255.5
+offset_bottom = 22.5
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Partida" type="Label" parent="VBoxContainer" unique_id=1615602748]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1039657018]
+layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
 
-[node name="S1Button" type="Button" parent="VBoxContainer" unique_id=119289951]
+[node name="Previous" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=119289951]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -107,9 +112,9 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_q1sj5")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_mrbsi")
 theme_override_styles/hover = SubResource("StyleBoxFlat_16fmx")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_qud5n")
-text = "Partida 1"
+text = "Anterior"
 
-[node name="S2Button" type="Button" parent="VBoxContainer" unique_id=1649402462]
+[node name="Reset" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=1649402462]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -120,9 +125,9 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_q1sj5")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_mrbsi")
 theme_override_styles/hover = SubResource("StyleBoxFlat_16fmx")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_qud5n")
-text = "Partida 2"
+text = "Borrar"
 
-[node name="S3Button" type="Button" parent="VBoxContainer" unique_id=1465968150]
+[node name="Load" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=834988979]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -133,7 +138,20 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_q1sj5")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_mrbsi")
 theme_override_styles/hover = SubResource("StyleBoxFlat_16fmx")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_qud5n")
-text = "Partida 3"
+text = "Cargar"
+
+[node name="Next" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=1465968150]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_q1sj5")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_mrbsi")
+theme_override_styles/hover = SubResource("StyleBoxFlat_16fmx")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qud5n")
+text = "Siguiente"
 
 [node name="ExitButton" type="Button" parent="VBoxContainer" unique_id=2117279944]
 layout_mode = 2
@@ -148,5 +166,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_16fmx")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_qud5n")
 text = "Atrás"
 
-[connection signal="pressed" from="VBoxContainer/S1Button" to="." method="_on_s_1_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Previous" to="." method="_on_previous_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Load" to="." method="_on_load_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Next" to="." method="_on_next_pressed"]
 [connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]

@@ -10,7 +10,19 @@ var _insted_lvl: Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+    add_to_group("persist")
+    var result := SaveManager.load_current_slot()
+    print("Load: ", result)
     _create_lvl(_curr_lvl)
+
+func save_to_state(state: Dictionary) -> void:
+    state["level"] = {
+        "current_level": _curr_lvl
+    }
+
+func load_from_state(state: Dictionary) -> void:
+    var l: Dictionary = state.get("level", {})
+    _curr_lvl = l.get("current_level", 1)
 
 func _create_lvl(lvl_num: int) -> void:
     _insted_lvl = levels[lvl_num - 1].instantiate()
