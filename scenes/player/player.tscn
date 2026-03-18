@@ -32,7 +32,7 @@ script = ExtResource("1_gmlin")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=730657395]
 sprite_frames = SubResource("SpriteFrames_75vfm")
-animation = &"idle_right"
+animation = &"idle_left"
 autoplay = "idle_right"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1208859658]

@@ -4,8 +4,10 @@ extends Camera2D
 @export var smooth_speed := 3.0
 @export var velocity_influence := 0.2
 
+
 func _physics_process(delta: float) -> void:
-    var player: CharacterBody2D = get_parent().player
+    var player: Player = get_parent().player
+
     var center_pos := sub_viewport_container.global_position + (sub_viewport_container.size / 2)
 
     var target_offset := player.velocity * velocity_influence
