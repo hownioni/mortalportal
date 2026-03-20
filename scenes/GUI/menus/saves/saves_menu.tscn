@@ -63,6 +63,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_u3725")
+initial_scene = &"uid://bkf2bfjxotal"
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1928386489]
 layout_mode = 1

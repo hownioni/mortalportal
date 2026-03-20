@@ -35,7 +35,7 @@ func _on_exit_button_pressed() -> void:
 
 func _on_load_pressed() -> void:
     get_tree().paused = false
-    get_tree().change_scene_to_file(ScenePaths.PACKED.GAME_WORLD)
+    SceneLoader.load_scene(ScenePaths.PACKED.GAME_WORLD)
 
 func _on_previous_pressed() -> void:
     SaveManager.current_slot_id = max(1, SaveManager.current_slot_id - 1)

@@ -2,6 +2,7 @@ extends Node2D
 
 @export var levels: Array[PackedScene]
 @export var sub_viewport: SubViewport
+
 var player: Player = null
 var low_res_camera: Camera2D = null
 
