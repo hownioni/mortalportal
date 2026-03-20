@@ -19,6 +19,8 @@ config/icon="res://icon.svg"
 
 SceneManager="*uid://cpdkc0h6cbmtd"
 SaveManager="*uid://xmy2a0wh15bx"
+SceneLoader="*uid://v7jg4wcfk6i5"
+Debug="*uid://d1v01desns0q5"
 
 [debug]
 

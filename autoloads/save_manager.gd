@@ -127,7 +127,7 @@ func list_slots() -> Array[Dictionary]:
     dir.list_dir_end()
 #
     # Sort newest first
-    out.sort_custom(func(a: Dictionary, b: Dictionary):
+    out.sort_custom(func(a: Dictionary, b: Dictionary) -> bool:
         return int(a.get("updated_unix", 0)) > int(b.get("updated_unix", 0))
     )
 

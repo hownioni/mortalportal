@@ -18,4 +18,5 @@ func _on_resume_pressed() -> void:
     _pause_game(false)
 
 func _on_quit_pressed() -> void:
-    get_tree().change_scene_to_file("res://scenes/GUI/menu_main/main_menu.tscn")
+    Debug.Save.save_current_slot()
+    get_tree().change_scene_to_file(ScenePaths.MENUS.MAIN)

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bvapjl3scy3oj"]
 
 [ext_resource type="FontFile" uid="uid://chlnk21uq08pi" path="res://assets/fonts/GrapeSoda.ttf" id="1_60d8y"]
-[ext_resource type="Script" uid="uid://dk5eovq7ntqig" path="res://scenes/GUI/menu_saves/saves_menu.gd" id="1_u3725"]
+[ext_resource type="Script" uid="uid://dk5eovq7ntqig" path="res://scenes/GUI/menus/saves/saves_menu.gd" id="1_u3725"]
 [ext_resource type="Theme" uid="uid://cyctlkf5p1aff" path="res://assets/themes/text_test.tres" id="2_u3725"]
 
 [sub_resource type="Gradient" id="Gradient_ds0kv"]

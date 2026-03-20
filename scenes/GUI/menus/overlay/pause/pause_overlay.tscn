@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c6y0y31c37leu"]
 
-[ext_resource type="Script" uid="uid://c5ssl23j1fvm6" path="res://scenes/GUI/menu_pause/pause_menu.gd" id="2_3fn7a"]
+[ext_resource type="Script" uid="uid://c5ssl23j1fvm6" path="res://scenes/GUI/menus/overlay/pause/pause_overlay.gd" id="2_3fn7a"]
 [ext_resource type="FontFile" uid="uid://chlnk21uq08pi" path="res://assets/fonts/GrapeSoda.ttf" id="3_3fn7a"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ym5t1"]
