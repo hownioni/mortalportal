@@ -2,6 +2,7 @@
 
 [ext_resource type="FontFile" uid="uid://chlnk21uq08pi" path="res://assets/fonts/GrapeSoda.ttf" id="1_60d8y"]
 [ext_resource type="Script" uid="uid://dk5eovq7ntqig" path="res://scenes/GUI/menu_saves/saves_menu.gd" id="1_u3725"]
+[ext_resource type="Theme" uid="uid://cyctlkf5p1aff" path="res://assets/themes/text_test.tres" id="2_u3725"]
 
 [sub_resource type="Gradient" id="Gradient_ds0kv"]
 offsets = PackedFloat32Array(0, 0.35456294, 0.636832, 1)
@@ -10,6 +11,19 @@ colors = PackedColorArray(0.21960784, 0.24705882, 0.31764707, 1, 0.4017946, 0.41
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_3wst1"]
 gradient = SubResource("Gradient_ds0kv")
 fill_to = Vector2(1, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u3725"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3wst1"]
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q1sj5"]
 bg_color = Color(1, 1, 1, 1)
@@ -71,6 +85,7 @@ offset_bottom = 387.0
 grow_horizontal = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
+theme = ExtResource("2_u3725")
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 12
@@ -94,8 +109,23 @@ offset_bottom = 22.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Partida" type="Label" parent="VBoxContainer" unique_id=1615602748]
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer" unique_id=2011709964]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_u3725")
+
+[node name="Panel" type="Panel" parent="VBoxContainer/PanelContainer" unique_id=1327798514]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3wst1")
+
+[node name="Slot" type="Label" parent="VBoxContainer/PanelContainer" unique_id=1615602748]
+layout_mode = 2
+theme = ExtResource("2_u3725")
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 6
+theme_override_font_sizes/font_size = 96
+text = "placeholder"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1039657018]
 layout_mode = 2
@@ -167,6 +197,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_qud5n")
 text = "Atrás"
 
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Previous" to="." method="_on_previous_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Reset" to="." method="_on_reset_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Load" to="." method="_on_load_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Next" to="." method="_on_next_pressed"]
 [connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
