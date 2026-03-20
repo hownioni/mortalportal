@@ -1,0 +1,7 @@
+[gd_resource type="Theme" format=3 uid="uid://cyctlkf5p1aff"]
+
+[ext_resource type="FontFile" uid="uid://chlnk21uq08pi" path="res://assets/fonts/GrapeSoda.ttf" id="1_xc08h"]
+
+[resource]
+Label/colors/font_shadow_color = Color(0, 0, 0, 1)
+Label/fonts/font = ExtResource("1_xc08h")

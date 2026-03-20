@@ -24,6 +24,9 @@ func save_current_slot() -> Error:
 func load_current_slot() -> Dictionary:
     return load_slot(current_slot_id)
 
+func reset_current_slot() -> Error:
+    return reset_slot(current_slot_id)
+
 func save_slot(slot_id: int, state: Dictionary) -> Error:
     _ensure_dir(SAVES_DIR)
     _ensure_dir(_slot_dir(slot_id))
@@ -43,13 +46,21 @@ func save_slot(slot_id: int, state: Dictionary) -> Error:
         return err
 
     var meta := _load_json_or_empty(_slot_meta_path(slot_id))
+
     if meta.is_empty():
         meta["created_unix"] = wrapper["saved_unix"]
+        meta["title"] = "Partida %d" % slot_id
+        meta["last_level"] = "1"
+
     meta["updated_unix"] = wrapper["saved_unix"]
     meta["slot_id"] = slot_id
     meta["version"] = SAVE_VERSION
 
     meta["title"] = "Partida %d" % slot_id
+    if state.has("level") and state.level.has("current_level"):
+        meta["last_level"] = "%d" % state.level.current_level
+    else:
+        meta["last_level"] = "1"
 
     err = _write_json_atomic(_slot_meta_path(slot_id), meta)
     if err != OK:
@@ -92,6 +103,9 @@ func load_slot(slot_id: int) -> Dictionary:
         "state": data
     }
 
+func reset_slot(slot_id: int) -> Error:
+    return save_slot(slot_id, {})
+
 func list_slots() -> Array[Dictionary]:
     _ensure_dir(SAVES_DIR)
 
@@ -112,10 +126,10 @@ func list_slots() -> Array[Dictionary]:
                 out.append(meta)
     dir.list_dir_end()
 #
-    ## Sort newest first
-    #out.sort_custom(func(a: Dictionary, b: Dictionary):
-        #return int(a.get("updated_unix", 0)) > int(b.get("updated_unix", 0))
-    #)
+    # Sort newest first
+    out.sort_custom(func(a: Dictionary, b: Dictionary):
+        return int(a.get("updated_unix", 0)) > int(b.get("updated_unix", 0))
+    )
 
     return out
 
