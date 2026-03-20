@@ -11,8 +11,7 @@ var _insted_lvl: Node
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
     add_to_group("persist")
-    var result := SaveManager.load_current_slot()
-    print("Load: ", result)
+    Debug.Save.load_current_slot()
 
     _create_lvl(_curr_lvl)
 
@@ -41,6 +40,6 @@ func _reset_lvl() -> void:
 
 func _input(event: InputEvent) -> void:
     if event.is_action_pressed("save_test"):
-        SaveManager.save_current_slot()
+        Debug.Save.save_current_slot()
     if event.is_action_pressed("inc_lvl_test"):
         _curr_lvl = min(_curr_lvl + 1, levels.size())

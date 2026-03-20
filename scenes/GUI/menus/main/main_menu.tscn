@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://5tfxd7k8j7qs"]
 
-[ext_resource type="Script" uid="uid://cfltoifip86fj" path="res://scenes/GUI/menu_main/main_menu.gd" id="1_ds0kv"]
+[ext_resource type="Script" uid="uid://cfltoifip86fj" path="res://scenes/GUI/menus/main/main_menu.gd" id="1_ds0kv"]
 [ext_resource type="FontFile" uid="uid://chlnk21uq08pi" path="res://assets/fonts/GrapeSoda.ttf" id="1_vc5wb"]
 
 [sub_resource type="Gradient" id="Gradient_7hvb7"]
