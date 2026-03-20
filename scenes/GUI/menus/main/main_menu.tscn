@@ -41,7 +41,7 @@ shadow_offset = Vector2(0, 4)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vc5wb"]
 
 [node name="MainMenu" type="Control" unique_id=1922916655]
-process_mode = 2
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

@@ -1,8 +1,7 @@
 extends Control
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+    await SceneLoader.load_finished
     get_tree().paused = true
 
 func _on_start_button_pressed() -> void:

@@ -19,4 +19,5 @@ func _on_resume_pressed() -> void:
 
 func _on_quit_pressed() -> void:
     Debug.Save.save_current_slot()
-    get_tree().change_scene_to_file(ScenePaths.MENUS.MAIN)
+    SceneLoader.load_scene(ScenePaths.MENUS.MAIN)
+    _pause_game(false)
