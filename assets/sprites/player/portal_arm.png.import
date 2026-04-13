@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxxsoqp4dti08"
-path="res://.godot/imported/player_left.png-238bc43b8078ef7c99e092f3d0979b2c.ctex"
+uid="uid://cq7x6wmy7hs44"
+path="res://.godot/imported/portal_arm.png-3c98c19881d64dee184c22d6b393b8ad.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/player/player_left.png"
-dest_files=["res://.godot/imported/player_left.png-238bc43b8078ef7c99e092f3d0979b2c.ctex"]
+source_file="res://assets/sprites/player/portal_arm.png"
+dest_files=["res://.godot/imported/portal_arm.png-3c98c19881d64dee184c22d6b393b8ad.ctex"]
 
 [params]
 
