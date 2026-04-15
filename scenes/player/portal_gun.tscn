@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bj3nkm0wvmhov"]
+
+[ext_resource type="Texture2D" uid="uid://cq7x6wmy7hs44" path="res://assets/sprites/player/portal_arm.png" id="1_k74hr"]
+[ext_resource type="Script" uid="uid://d3r80pm2n5cx5" path="res://scenes/player/portal_gun.gd" id="2_xuty3"]
+
+[node name="PortalGun" type="Sprite2D" unique_id=37928629]
+texture = ExtResource("1_k74hr")
+offset = Vector2(5, 0)
+script = ExtResource("2_xuty3")

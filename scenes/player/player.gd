@@ -4,6 +4,7 @@ class_name Player
 signal player_died
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var gun_pivot: Node2D = $GunPivot
 
 const SPEED := 300.0
 const JUMP_VELOCITY := -350.0
