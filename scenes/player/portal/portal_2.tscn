@@ -17,7 +17,8 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4mkwm"]
 size = Vector2(8, 26)
 
-[node name="Portal2" type="Area2D" unique_id=2112777729]
+[node name="Portal2" type="Area2D" unique_id=2112777729 groups=["portals"]]
+collision_mask = 4
 script = ExtResource("1_nv2ru")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1405403629]
