@@ -1,16 +1,13 @@
 [gd_scene format=3 uid="uid://bkf2bfjxotal"]
 
-[ext_resource type="Script" uid="uid://bkilhvqkr6j1p" path="res://scenes/main.gd" id="1_jyhfs"]
-[ext_resource type="PackedScene" uid="uid://2mtod6nrr0nl" path="res://scenes/levels/level_1.tscn" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://2mtod6nrr0nl" path="res://scenes/level/scenes/level_1.tscn" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://4k65s3jlf42h" path="res://scenes/high_res_camera.gd" id="2_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://c6y0y31c37leu" path="res://scenes/GUI/menus/overlay/pause/pause_overlay.tscn" id="3_sugp2"]
-[ext_resource type="PackedScene" uid="uid://c7cv3o2e8h1kv" path="res://scenes/levels/level_2.tscn" id="3_tbgi4"]
+[ext_resource type="PackedScene" uid="uid://cd1hbcummioiq" path="res://scenes/level/level_controller.tscn" id="4_o6xl0"]
+[ext_resource type="PackedScene" uid="uid://c7cv3o2e8h1kv" path="res://scenes/level/scenes/level_2.tscn" id="4_tipki"]
 [ext_resource type="PackedScene" uid="uid://bj3nkm0wvmhov" path="res://scenes/player/portal_gun.tscn" id="5_tefeu"]
 
-[node name="Main" type="Node2D" unique_id=853285836 node_paths=PackedStringArray("sub_viewport")]
-script = ExtResource("1_jyhfs")
-levels = Array[PackedScene]([ExtResource("1_o5qli"), ExtResource("3_tbgi4")])
-sub_viewport = NodePath("SubViewportContainer/SubViewport")
+[node name="Main" type="Node2D" unique_id=853285836]
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1467245354]
 anchors_preset = 15
@@ -30,13 +27,18 @@ audio_listener_enable_2d = true
 size = Vector2i(1920, 1080)
 render_target_update_mode = 4
 
-[node name="HighResCamera" type="Camera2D" parent="." unique_id=817473116 node_paths=PackedStringArray("sub_viewport_container")]
+[node name="LevelController" parent="SubViewportContainer/SubViewport" unique_id=661237016 instance=ExtResource("4_o6xl0")]
+levels = Array[PackedScene]([ExtResource("1_o5qli"), ExtResource("4_tipki")])
+
+[node name="HighResCamera" type="Camera2D" parent="." unique_id=817473116 node_paths=PackedStringArray("sub_viewport_container", "level_controller")]
 zoom = Vector2(3, 3)
 script = ExtResource("2_0wfyh")
 sub_viewport_container = NodePath("../SubViewportContainer")
+level_controller = NodePath("../SubViewportContainer/SubViewport/LevelController")
 
-[node name="PortalGun" parent="." unique_id=37928629 node_paths=PackedStringArray("sub_viewport_container") instance=ExtResource("5_tefeu")]
+[node name="PortalGun" parent="." unique_id=37928629 node_paths=PackedStringArray("sub_viewport_container", "level_controller") instance=ExtResource("5_tefeu")]
 sub_viewport_container = NodePath("../SubViewportContainer")
+level_controller = NodePath("../SubViewportContainer/SubViewport/LevelController")
 
 [node name="GUI" type="CanvasLayer" parent="." unique_id=2022569888]
 
