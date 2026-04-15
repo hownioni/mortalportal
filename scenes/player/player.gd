@@ -29,7 +29,9 @@ func _physics_process(delta: float) -> void:
     # Get the input direction and handle the movement/deceleration.
     var direction := Input.get_axis("left", "right")
     var mouse_pos = get_global_mouse_position()
-    animated_sprite_2d.flip_h = true if global_position.x > mouse_pos.x else false
+    animated_sprite_2d.flip_h = global_position.x > mouse_pos.x
+    var look_dir := 1 if animated_sprite_2d.flip_h else -1
+    gun_pivot.position.x = look_dir * gun_pivot.position.abs().x
     if direction:
         velocity.x = direction * SPEED
     else:
