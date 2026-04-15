@@ -28,3 +28,6 @@ animation = &"idle"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1208859658]
 position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_gmlin")
+
+[node name="GunPivot" type="Node2D" parent="." unique_id=1294010686]
+position = Vector2(-4, -6)
