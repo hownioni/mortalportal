@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://j3gpofadyeq"]
+
+[ext_resource type="Script" uid="uid://ctmu5cilil3wt" path="res://scenes/player/portal/portal.gd" id="1_dikl4"]
+[ext_resource type="Texture2D" uid="uid://del4wbpqnqryh" path="res://assets/sprites/portal/portal_1.png" id="1_rcea8"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xcpbf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_rcea8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hvboi"]
+size = Vector2(8, 26)
+
+[node name="Portal1" type="Area2D" unique_id=148528978]
+script = ExtResource("1_dikl4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=615517887]
+sprite_frames = SubResource("SpriteFrames_xcpbf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1312391687]
+position = Vector2(2, 0)
+shape = SubResource("RectangleShape2D_hvboi")
