@@ -1,25 +1,16 @@
 [gd_scene format=3 uid="uid://d3wnvedv0o5bj"]
 
 [ext_resource type="Script" uid="uid://cp1ryrtbcw8ex" path="res://scenes/player/player.gd" id="1_gmlin"]
-[ext_resource type="Texture2D" uid="uid://bxxsoqp4dti08" path="res://assets/sprites/player/player_left.png" id="2_lvxji"]
-[ext_resource type="Texture2D" uid="uid://dtajbp1ne48yl" path="res://assets/sprites/player/player_right.png" id="3_p47bc"]
+[ext_resource type="Texture2D" uid="uid://cdki8il6es0ct" path="res://assets/sprites/player/player.png" id="2_dovo2"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_75vfm"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_lvxji")
+"texture": ExtResource("2_dovo2")
 }],
 "loop": true,
-"name": &"idle_left",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_p47bc")
-}],
-"loop": true,
-"name": &"idle_right",
+"name": &"idle",
 "speed": 5.0
 }]
 
@@ -32,9 +23,11 @@ script = ExtResource("1_gmlin")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=730657395]
 sprite_frames = SubResource("SpriteFrames_75vfm")
-animation = &"idle_left"
-autoplay = "idle_right"
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1208859658]
 position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_gmlin")
+
+[node name="GunPivot" type="Node2D" parent="." unique_id=1294010686]
+position = Vector2(-4, -6)
