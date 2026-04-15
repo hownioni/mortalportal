@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://cd1hbcummioiq"]
+
+[ext_resource type="Script" uid="uid://7adivuad8rw7" path="res://scenes/level/low_res_camera.gd" id="1_7fbgj"]
+[ext_resource type="Script" uid="uid://cm3t506rkcqjh" path="res://scenes/level/level_controller.gd" id="1_ma1v6"]
+[ext_resource type="PackedScene" uid="uid://d3wnvedv0o5bj" path="res://scenes/player/player.tscn" id="3_0wdci"]
+[ext_resource type="Script" uid="uid://dqghfvat2n4g6" path="res://scenes/level/killzone.gd" id="4_mtexa"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_57f8p"]
+
+[node name="LevelController" type="Node" unique_id=1920645970]
+script = ExtResource("1_ma1v6")
+
+[node name="LowResCamera" type="Camera2D" parent="." unique_id=1536845428 node_paths=PackedStringArray("follow_target")]
+script = ExtResource("1_7fbgj")
+follow_target = NodePath("../Player")
+
+[node name="Player" parent="." unique_id=1344830218 instance=ExtResource("3_0wdci")]
+z_index = 3
+
+[node name="Killzone" type="Area2D" parent="." unique_id=557437378]
+collision_mask = 4
+script = ExtResource("4_mtexa")
+
+[node name="WorldBound" type="CollisionShape2D" parent="Killzone" unique_id=1894215040]
+shape = SubResource("WorldBoundaryShape2D_57f8p")
+
+[connection signal="died" from="Player" to="." method="_reset_lvl"]
+[connection signal="body_entered" from="Killzone" to="Killzone" method="_on_body_entered"]

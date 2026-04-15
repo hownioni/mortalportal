@@ -1,0 +1,16 @@
+[gd_resource type="TileSet" format=3 uid="uid://bobuvj20ae5dq"]
+
+[ext_resource type="Texture2D" uid="uid://bqraci0c0lhq7" path="res://assets/tilesets/tile.png" id="1_j2gct"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nsrm0"]
+texture = ExtResource("1_j2gct")
+margins = Vector2i(1, 1)
+separation = Vector2i(1, 0)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0 = 0
+
+[resource]
+physics_layer_0/collision_layer = 1
+physics_layer_0/collision_mask = 0
+sources/1 = SubResource("TileSetAtlasSource_nsrm0")
