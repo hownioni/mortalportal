@@ -4,6 +4,7 @@ class_name PortalEntity
 var is_grounded := false
 
 func custom_move_and_slide(delta: float) -> void:
+    is_grounded = false
     var collision := move_and_collide(velocity * delta)
     if collision:
         var portal := find_portal_at_collision(collision)
@@ -30,6 +31,6 @@ func find_portal_at_collision(collision: KinematicCollision2D) -> Area2D:
 
     var results := space_state.intersect_point(query)
     for result in results:
-        if result.collider.is_in_group("portalS"):
+        if result.collider.is_in_group("portals"):
             return result.collider
     return null

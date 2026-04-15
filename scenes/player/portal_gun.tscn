@@ -7,3 +7,6 @@
 texture = ExtResource("1_k74hr")
 offset = Vector2(5, 0)
 script = ExtResource("2_xuty3")
+
+[node name="AimLine" type="Line2D" parent="." unique_id=286021960]
+width = 1.0

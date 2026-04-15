@@ -3,6 +3,11 @@ extends Area2D
 @export var linked_portal: Area2D
 const EXIT_BUFFER := 32.0
 
+func _physics_process(delta: float) -> void:
+    for body in get_overlapping_bodies():
+        if body is PortalEntity:
+            teleport_object(body)
+
 func teleport_object(body: PortalEntity):
     if not linked_portal: return
     var new_pos: Vector2 = linked_portal.global_position
