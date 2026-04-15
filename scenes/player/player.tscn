@@ -22,12 +22,13 @@ collision_layer = 4
 script = ExtResource("1_gmlin")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=730657395]
+position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_75vfm")
 animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1208859658]
-position = Vector2(0, 1.5)
+position = Vector2(0, -14.5)
 shape = SubResource("RectangleShape2D_gmlin")
 
 [node name="GunPivot" type="Node2D" parent="." unique_id=1294010686]
-position = Vector2(-4, -6)
+position = Vector2(-4, -22)

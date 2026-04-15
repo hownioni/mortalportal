@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://cjayjb86npnwb"]
+
+[node name="Level" type="Node2D" unique_id=1723402512]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1623551756]
+
+[node name="PlayerSpawn" type="Node2D" parent="." unique_id=228192405]
+
+[node name="WorldBoundSpawn" type="Node2D" parent="." unique_id=928572834]

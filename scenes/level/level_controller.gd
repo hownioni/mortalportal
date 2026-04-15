@@ -1,15 +1,17 @@
-extends Node2D
+extends Node
+class_name LevelController
 
 @export var levels: Array[PackedScene]
-@export var sub_viewport: SubViewport
 
-var player: Player = null
-var low_res_camera: Camera2D = null
+@onready var player: Player = $Player
+@onready var world_bound: CollisionShape2D = $Killzone/WorldBound
+@onready var killzone: Area2D = $Killzone
 
+var _player_spawn: Node2D
+var _world_bound_spawn: Node2D
 var _curr_lvl := 1
 var _insted_lvl: Node
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
     add_to_group("persist")
     Debug.Save.load_current_slot()
@@ -27,15 +29,18 @@ func load_from_state(state: Dictionary) -> void:
 
 func _create_lvl(lvl_num: int) -> void:
     _insted_lvl = levels[lvl_num - 1].instantiate()
-    sub_viewport.add_child(_insted_lvl)
-    player = _insted_lvl.get_node("Player")
-    #low_res_camera = _insted_lvl.get_node("LowResCamera")
-    player.player_died.connect(_reset_lvl)
+    add_child(_insted_lvl)
+    _player_spawn = _insted_lvl.get_node("PlayerSpawn")
+    _world_bound_spawn = _insted_lvl.get_node("WorldBoundSpawn")
+
+    player.global_position = _player_spawn.global_position
+    world_bound.global_position = _world_bound_spawn.global_position
 
 func _remove_lvl() -> void:
     _insted_lvl.queue_free()
 
 func _reset_lvl() -> void:
+    player.respawn(_player_spawn.global_position)
     _remove_lvl()
     _create_lvl(_curr_lvl)
 
