@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name PortalEntity
 
+const _DEG_45 := PI/4
+
 var is_grounded := false
 
 func custom_move_and_slide(delta: float) -> void:
@@ -9,17 +11,17 @@ func custom_move_and_slide(delta: float) -> void:
     if collision:
         var portal := find_portal_at_collision(collision)
 
-        if collision.get_normal().dot(Vector2.UP) > 0.7:
+        if collision.get_normal().dot(Vector2.UP) > _DEG_45:
             is_grounded = true
 
         if portal: return
         else:
             velocity = velocity.slide(collision.get_normal())
 
-            var remainder := collision.get_remainder()
+            var remainder: Vector2 = collision.get_remainder()
             var slide_collision := move_and_collide(remainder.slide(collision.get_normal()))
             if slide_collision:
-                if slide_collision.get_normal().dot(Vector2.UP) > 0.7:
+                if slide_collision.get_normal().dot(Vector2.UP) > _DEG_45:
                     is_grounded = true
 
 func find_portal_at_collision(collision: KinematicCollision2D) -> Area2D:
