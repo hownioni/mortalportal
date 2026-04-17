@@ -1,13 +1,18 @@
-extends CharacterBody2D
+extends PortalEntity
 class_name Player
 
 signal died
 
+@export var level_controller: LevelController
+
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var gun_pivot: Node2D = $GunPivot
 
-const SPEED := 300.0
-const JUMP_VELOCITY := -350.0
+const RUN_SPEED := 400.0
+const ACCEL := 1000.0
+const FRICTION := 1000.0
+const GRAVITY := 1500.0
+const JUMP_FORCE := -500.0
 
 var _alive: bool = true
 
@@ -16,25 +21,28 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
     # Add the gravity.
-    if not is_on_floor():
-        velocity += get_gravity() * delta
+    if not is_grounded:
+        velocity.y += GRAVITY * delta
 
-    # Handle jump.
-    if Input.is_action_just_pressed("jump") and is_on_floor():
-        velocity.y = JUMP_VELOCITY
+    ### INPUT
+    # Jump
+    if Input.is_action_just_pressed("jump") and test_move(transform, Vector2.DOWN):
+        velocity.y = JUMP_FORCE
 
     # Get the input direction and handle the movement/deceleration.
-    var direction := Input.get_axis("left", "right")
+    var move_dir := Input.get_axis("left", "right")
     var mouse_pos := get_global_mouse_position()
     animated_sprite_2d.flip_h = global_position.x > mouse_pos.x
+
     var look_dir := 1 if animated_sprite_2d.flip_h else -1
     gun_pivot.position.x = look_dir * gun_pivot.position.abs().x
-    if direction:
-        velocity.x = direction * SPEED
-    else:
-        velocity.x = move_toward(velocity.x, 0, SPEED)
 
-    move_and_slide()
+    if move_dir:
+        velocity.x = move_toward(velocity.x, move_dir * RUN_SPEED, ACCEL * delta)
+    else:
+        velocity.x = move_toward(velocity.x, 0, FRICTION * delta)
+
+    custom_move_and_slide(delta)
 
     global_position = global_position.round()
 

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cp1ryrtbcw8ex" path="res://scenes/player/player.gd" id="1_gmlin"]
 [ext_resource type="Texture2D" uid="uid://cdki8il6es0ct" path="res://assets/sprites/player/player.png" id="2_dovo2"]
+[ext_resource type="Script" uid="uid://13hx5ax5rmhv" path="res://scenes/player/gun_pivot.gd" id="3_gmlin"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_75vfm"]
 animations = [{
@@ -18,7 +19,8 @@ animations = [{
 size = Vector2(4, 29)
 
 [node name="Player" type="CharacterBody2D" unique_id=1344830218]
-collision_layer = 4
+collision_layer = 12
+collision_mask = 3
 script = ExtResource("1_gmlin")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=730657395]
@@ -32,3 +34,7 @@ shape = SubResource("RectangleShape2D_gmlin")
 
 [node name="GunPivot" type="Node2D" parent="." unique_id=1294010686]
 position = Vector2(-4, -22)
+script = ExtResource("3_gmlin")
+
+[node name="AimLine" type="Line2D" parent="GunPivot" unique_id=358002198]
+width = 1.0
