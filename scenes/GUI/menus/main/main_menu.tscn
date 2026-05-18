@@ -1,0 +1,142 @@
+[gd_scene format=3 uid="uid://5tfxd7k8j7qs"]
+
+[ext_resource type="Script" uid="uid://cfltoifip86fj" path="res://scenes/GUI/menus/main/main_menu.gd" id="1_ds0kv"]
+[ext_resource type="FontFile" uid="uid://chlnk21uq08pi" path="res://assets/fonts/GrapeSoda.ttf" id="1_vc5wb"]
+[ext_resource type="Texture2D" uid="uid://dsp0l4uar0l3e" path="res://assets/GUI/Sprite-0002.png" id="2_dgx8o"]
+[ext_resource type="Texture2D" uid="uid://bylo0l7f7hm3q" path="res://assets/GUI/buttons/Botones menú/INICIO.png" id="4_i88qf"]
+[ext_resource type="Texture2D" uid="uid://dc4i4sxvjtys" path="res://assets/GUI/buttons/Botones menú/INICIO_P.png" id="5_gbny5"]
+[ext_resource type="Texture2D" uid="uid://cxyaf1wye8fyh" path="res://assets/GUI/buttons/Botones menú/INICIO_H.png" id="6_sspbx"]
+[ext_resource type="Texture2D" uid="uid://b74rmbubb4bup" path="res://assets/GUI/buttons/Botones menú/CONTINUAR (1).png" id="7_j114e"]
+[ext_resource type="Texture2D" uid="uid://bxo5rh5xwt58l" path="res://assets/GUI/buttons/Botones menú/CONTINUAR_P.png" id="8_v8weq"]
+[ext_resource type="Texture2D" uid="uid://bqa60xom4f1ek" path="res://assets/GUI/buttons/Botones menú/CONTINUAR_H.png" id="9_tmdk0"]
+[ext_resource type="Texture2D" uid="uid://cpoisv8qmxpue" path="res://assets/GUI/buttons/Botones menú/SALIR (1).png" id="10_gh2rg"]
+[ext_resource type="Texture2D" uid="uid://cd8it0sk3tc86" path="res://assets/GUI/buttons/Botones menú/SALIR_P.png" id="11_4tae7"]
+[ext_resource type="Texture2D" uid="uid://vy1w8716krh5" path="res://assets/GUI/buttons/Botones menú/SALIR_H.png" id="12_nymad"]
+[ext_resource type="Script" uid="uid://ceyv5n07afv0q" path="res://scenes/GUI/menus/main/modo_button.gd" id="13_gbny5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vc5wb"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ds0kv"]
+bg_color = Color(0.63529414, 0.63529414, 0.63529414, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.20392157)
+shadow_size = 5
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7hvb7"]
+bg_color = Color(0.8235294, 0.8235294, 0.8235294, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.20392157)
+shadow_size = 5
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vc5wb"]
+
+[node name="MainMenu" type="Control" unique_id=1922916655]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ds0kv")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=239304589]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_dgx8o")
+
+[node name="Label" type="Label" parent="." unique_id=594773121]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -660.0
+offset_top = 114.0
+offset_right = 660.0
+offset_bottom = 387.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 12
+theme_override_fonts/font = ExtResource("1_vc5wb")
+theme_override_font_sizes/font_size = 240
+text = "Mortal Portal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=857922984]
+layout_mode = 0
+offset_left = 766.0
+offset_top = 428.0
+offset_right = 1162.0
+offset_bottom = 724.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="StartButton" type="TextureButton" parent="VBoxContainer" unique_id=244920644]
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = ExtResource("4_i88qf")
+texture_pressed = ExtResource("5_gbny5")
+texture_hover = ExtResource("6_sspbx")
+
+[node name="ContinueButton" type="TextureButton" parent="VBoxContainer" unique_id=1095783572]
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = ExtResource("7_j114e")
+texture_pressed = ExtResource("8_v8weq")
+texture_hover = ExtResource("9_tmdk0")
+
+[node name="OptionsButton" type="Button" parent="VBoxContainer" unique_id=275228541]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_vc5wb")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ds0kv")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7hvb7")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vc5wb")
+text = "opciones"
+
+[node name="ExitButton" type="TextureButton" parent="VBoxContainer" unique_id=495752607]
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = ExtResource("10_gh2rg")
+texture_pressed = ExtResource("11_4tae7")
+texture_hover = ExtResource("12_nymad")
+
+[node name="TouchScreenButton" type="Button" parent="." unique_id=1145837017]
+layout_mode = 0
+offset_left = 1665.0
+offset_top = 73.0
+offset_right = 1760.5
+offset_bottom = 108.684784
+scale = Vector2(2, 1.8775511)
+script = ExtResource("13_gbny5")
+
+[connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]

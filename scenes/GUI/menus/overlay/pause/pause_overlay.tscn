@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://c6y0y31c37leu"]
+
+[ext_resource type="Script" uid="uid://c5ssl23j1fvm6" path="res://scenes/GUI/menus/overlay/pause/pause_overlay.gd" id="2_3fn7a"]
+[ext_resource type="FontFile" uid="uid://chlnk21uq08pi" path="res://assets/fonts/GrapeSoda.ttf" id="3_3fn7a"]
+[ext_resource type="Texture2D" uid="uid://b74rmbubb4bup" path="res://assets/GUI/buttons/Botones menú/CONTINUAR (1).png" id="3_tvf5n"]
+[ext_resource type="Texture2D" uid="uid://bxo5rh5xwt58l" path="res://assets/GUI/buttons/Botones menú/CONTINUAR_P.png" id="4_nuaef"]
+[ext_resource type="Texture2D" uid="uid://dxk5jh7bbd15o" path="res://assets/GUI/buttons/OPCIONES.png" id="4_wep3w"]
+[ext_resource type="Texture2D" uid="uid://bqa60xom4f1ek" path="res://assets/GUI/buttons/Botones menú/CONTINUAR_H.png" id="5_km6y0"]
+[ext_resource type="Texture2D" uid="uid://cd8it0sk3tc86" path="res://assets/GUI/buttons/Botones menú/SALIR_P.png" id="6_4h2xw"]
+[ext_resource type="Texture2D" uid="uid://kg7xgm4j2gqi" path="res://assets/GUI/buttons/OPCIONES (1).png" id="6_km6y0"]
+[ext_resource type="Texture2D" uid="uid://vy1w8716krh5" path="res://assets/GUI/buttons/Botones menú/SALIR_H.png" id="7_qbovv"]
+[ext_resource type="Texture2D" uid="uid://wropo8mr2ujq" path="res://assets/GUI/buttons/OPCIONES_H.png" id="8_5e1yb"]
+[ext_resource type="Texture2D" uid="uid://cpoisv8qmxpue" path="res://assets/GUI/buttons/Botones menú/SALIR (1).png" id="9_km6y0"]
+
+[node name="PauseMenu" type="Control" unique_id=301034208]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_3fn7a")
+
+[node name="Label" type="Label" parent="." unique_id=698744547]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -660.0
+offset_top = 114.0
+offset_right = 660.0
+offset_bottom = 387.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 12
+theme_override_fonts/font = ExtResource("3_3fn7a")
+theme_override_font_sizes/font_size = 240
+text = "Pausa"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1221812543]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -171.5
+offset_top = -170.0
+offset_right = 171.5
+offset_bottom = 170.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Resume" type="TextureButton" parent="VBoxContainer" unique_id=1814273425]
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = ExtResource("3_tvf5n")
+texture_pressed = ExtResource("4_nuaef")
+texture_hover = ExtResource("5_km6y0")
+
+[node name="Options" type="TextureButton" parent="VBoxContainer" unique_id=1626635406]
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = ExtResource("6_km6y0")
+texture_pressed = ExtResource("4_wep3w")
+texture_hover = ExtResource("8_5e1yb")
+
+[node name="Quit" type="TextureButton" parent="VBoxContainer" unique_id=1435259708]
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = ExtResource("9_km6y0")
+texture_pressed = ExtResource("6_4h2xw")
+texture_hover = ExtResource("7_qbovv")
+
+[connection signal="pressed" from="VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]

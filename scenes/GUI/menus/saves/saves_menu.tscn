@@ -1,0 +1,155 @@
+[gd_scene format=3 uid="uid://bvapjl3scy3oj"]
+
+[ext_resource type="FontFile" uid="uid://chlnk21uq08pi" path="res://assets/fonts/GrapeSoda.ttf" id="1_60d8y"]
+[ext_resource type="Script" uid="uid://dk5eovq7ntqig" path="res://scenes/GUI/menus/saves/saves_menu.gd" id="1_u3725"]
+[ext_resource type="Texture2D" uid="uid://dcmabn3k3kksk" path="res://assets/GUI/buttons/sinletra.png" id="2_4yy2w"]
+[ext_resource type="Theme" uid="uid://cyctlkf5p1aff" path="res://assets/themes/text_test.tres" id="2_u3725"]
+[ext_resource type="Texture2D" uid="uid://dfkb8rc1pm0ox" path="res://assets/GUI/buttons/Botones_H/ANTERIOR_H.png" id="5_h8gbn"]
+[ext_resource type="Texture2D" uid="uid://capwoq0vrh7tm" path="res://assets/GUI/buttons/BOTONES (2)/ANTERIOR (1).png" id="6_mg8xi"]
+[ext_resource type="Texture2D" uid="uid://cl43r4cql4hvg" path="res://assets/GUI/buttons/boton_presionado/ANTERIOR_P.png" id="6_xeqy0"]
+[ext_resource type="Texture2D" uid="uid://cmuwqp57a342p" path="res://assets/GUI/buttons/BOTONES (2)/BORRAR (1).png" id="7_xeqy0"]
+[ext_resource type="Texture2D" uid="uid://ce2poknaielkl" path="res://assets/GUI/buttons/BOTONES (2)/SIGUIENTE (3).png" id="8_wtqje"]
+[ext_resource type="Texture2D" uid="uid://b86dbkwbbrfu1" path="res://assets/GUI/buttons/boton_presionado/BORRAR_P.png" id="9_ttsif"]
+[ext_resource type="Texture2D" uid="uid://ddtvu4aemlmsq" path="res://assets/GUI/buttons/Botones_H/BORRAR_H.png" id="10_jyw8u"]
+[ext_resource type="Texture2D" uid="uid://c5yvanalvmms6" path="res://assets/GUI/buttons/VOLVER_H/CARGAR (1).png" id="11_4yy2w"]
+[ext_resource type="Texture2D" uid="uid://tmaoq864sl15" path="res://assets/GUI/buttons/boton_presionado/CARGAR_P.png" id="11_ea0sb"]
+[ext_resource type="Texture2D" uid="uid://c57n62oygplgw" path="res://assets/GUI/buttons/boton_presionado/SIGUIENTE_P.png" id="13_7ax5g"]
+[ext_resource type="Texture2D" uid="uid://dall7fwalug84" path="res://assets/GUI/buttons/VOLVER_H/CARGAR_H.png" id="13_hak15"]
+[ext_resource type="Texture2D" uid="uid://drj7wlkm2v7fs" path="res://assets/GUI/buttons/Botones_H/SIGUIENTE_H.png" id="14_4yy2w"]
+[ext_resource type="Texture2D" uid="uid://b7xg5dgalnqys" path="res://assets/GUI/buttons/boton_presionado/VOLVER_P.png" id="15_hak15"]
+[ext_resource type="Texture2D" uid="uid://du4o6fa4u6ska" path="res://assets/GUI/buttons/VOLVER_H/VOLVER (1).png" id="17_4yy2w"]
+[ext_resource type="Texture2D" uid="uid://bb0li3607uqwt" path="res://assets/GUI/buttons/VOLVER_H/VOLVER_H.png" id="19_hak15"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u3725"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3wst1"]
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[node name="SavesMenu" type="Control" unique_id=2052832100]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_u3725")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1928386489]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_4yy2w")
+
+[node name="Title" type="Label" parent="." unique_id=1748708996]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -660.0
+offset_top = 114.0
+offset_right = 660.0
+offset_bottom = 387.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme = ExtResource("2_u3725")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 12
+theme_override_fonts/font = ExtResource("1_60d8y")
+theme_override_font_sizes/font_size = 240
+text = "Partidas"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=186786460]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -348.0
+offset_top = -124.0
+offset_right = 348.0
+offset_bottom = 124.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer" unique_id=2011709964]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_u3725")
+
+[node name="Panel" type="Panel" parent="VBoxContainer/PanelContainer" unique_id=1327798514]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3wst1")
+
+[node name="Slot" type="Label" parent="VBoxContainer/PanelContainer" unique_id=1615602748]
+layout_mode = 2
+theme = ExtResource("2_u3725")
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 6
+theme_override_font_sizes/font_size = 96
+text = "placeholder"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1039657018]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Previous" type="TextureButton" parent="VBoxContainer/HBoxContainer" unique_id=1015574189]
+layout_direction = 2
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = ExtResource("6_mg8xi")
+texture_pressed = ExtResource("6_xeqy0")
+texture_hover = ExtResource("5_h8gbn")
+
+[node name="Reset" type="TextureButton" parent="VBoxContainer/HBoxContainer" unique_id=178138206]
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = ExtResource("7_xeqy0")
+texture_pressed = ExtResource("9_ttsif")
+texture_hover = ExtResource("10_jyw8u")
+
+[node name="Load" type="TextureButton" parent="VBoxContainer/HBoxContainer" unique_id=1198965909]
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = ExtResource("11_4yy2w")
+texture_pressed = ExtResource("11_ea0sb")
+texture_hover = ExtResource("13_hak15")
+
+[node name="Next" type="TextureButton" parent="VBoxContainer/HBoxContainer" unique_id=1070369647]
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = ExtResource("8_wtqje")
+texture_pressed = ExtResource("13_7ax5g")
+texture_hover = ExtResource("14_4yy2w")
+
+[node name="ExitButton" type="TextureButton" parent="VBoxContainer" unique_id=1240575033]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+texture_normal = ExtResource("17_4yy2w")
+texture_pressed = ExtResource("15_hak15")
+texture_hover = ExtResource("19_hak15")
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Previous" to="." method="_on_previous_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Reset" to="." method="_on_reset_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Load" to="." method="_on_load_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Next" to="." method="_on_next_pressed"]
+[connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]

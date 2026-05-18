@@ -1,0 +1,149 @@
+[gd_scene format=3 uid="uid://bmt4mddciqawm"]
+
+[ext_resource type="Script" uid="uid://d0id0dwfskc18" path="res://buttons_android/botones.gd" id="1_gq78j"]
+[ext_resource type="Texture2D" uid="uid://cwuoc3cq6hqfs" path="res://assets/GUI/buttons/left.png" id="1_x3djx"]
+[ext_resource type="Texture2D" uid="uid://qrifb07c68rx" path="res://assets/GUI/buttons/right.png" id="2_gq78j"]
+[ext_resource type="Texture2D" uid="uid://ptdn1pwws7fc" path="res://assets/GUI/buttons/top.png" id="3_jircm"]
+[ext_resource type="Texture2D" uid="uid://cn4w8y5hgaist" path="res://assets/GUI/buttons/buttom.png" id="4_femkx"]
+[ext_resource type="Texture2D" uid="uid://dhe7hgx07k78q" path="res://assets/GUI/buttons/Circulo.png" id="5_5s3b1"]
+[ext_resource type="Texture2D" uid="uid://bb8yng5qpus3v" path="res://assets/GUI/buttons/Cuadrado.png" id="6_ur1gr"]
+[ext_resource type="Script" uid="uid://d0g6lqmyxjw85" path="res://buttons_android/jostick.gd" id="8_5s3b1"]
+[ext_resource type="Texture2D" uid="uid://byo5d2kryprix" path="res://assets/GUI/buttons/pngwing.com.png" id="9_ur1gr"]
+[ext_resource type="Texture2D" uid="uid://dgmfmywo3brs7" path="res://icon.svg" id="10_006gs"]
+[ext_resource type="Texture2D" uid="uid://daojbv16v7x3i" path="res://assets/GUI/buttons/PAUSE.png" id="11_x4nd3"]
+[ext_resource type="Texture2D" uid="uid://b8qbe0rqpcyly" path="res://assets/GUI/buttons/PAUSE_P.png" id="12_5jh5t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jircm"]
+size = Vector2(50, 49)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gq78j"]
+size = Vector2(42, 52)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_femkx"]
+size = Vector2(29, 66)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5s3b1"]
+size = Vector2(29, 51)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ur1gr"]
+radius = 22.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_006gs"]
+radius = 22.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_006gs"]
+size = Vector2(43, 44)
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=1649235080]
+script = ExtResource("1_gq78j")
+
+[node name="Control" type="Control" parent="." unique_id=1933167283]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="right" type="TouchScreenButton" parent="Control" unique_id=451296279]
+position = Vector2(257, 631)
+scale = Vector2(4.188, 4.625)
+texture_normal = ExtResource("2_gq78j")
+shape = SubResource("RectangleShape2D_jircm")
+action = "right"
+
+[node name="left" type="TouchScreenButton" parent="Control" unique_id=1584653518]
+position = Vector2(-48, 625.00006)
+scale = Vector2(4.083, 4.713)
+texture_normal = ExtResource("1_x3djx")
+shape = SubResource("RectangleShape2D_gq78j")
+action = "left"
+
+[node name="Top" type="TouchScreenButton" parent="Control" unique_id=1142685813]
+position = Vector2(100, 487)
+scale = Vector2(4.271, 3.921)
+texture_normal = ExtResource("3_jircm")
+shape = SubResource("RectangleShape2D_femkx")
+action = "jump"
+
+[node name="buttom" type="TouchScreenButton" parent="Control" unique_id=1456412669]
+position = Vector2(92, 792.99994)
+scale = Vector2(4.26, 4.226)
+texture_normal = ExtResource("4_femkx")
+shape = SubResource("RectangleShape2D_5s3b1")
+action = "crouch"
+
+[node name="Circulo" type="TouchScreenButton" parent="Control" unique_id=1358095026]
+position = Vector2(904.99994, 779)
+scale = Vector2(4.604, 4.604)
+texture_normal = ExtResource("5_5s3b1")
+shape = SubResource("CircleShape2D_ur1gr")
+action = "fire_two"
+
+[node name="Cuadrado" type="TouchScreenButton" parent="Control" unique_id=2035815321]
+position = Vector2(568, 779)
+scale = Vector2(4.542, 4.48)
+texture_normal = ExtResource("6_ur1gr")
+shape = SubResource("CircleShape2D_006gs")
+action = "fire_one"
+
+[node name="AimJoystick" type="Control" parent="Control" unique_id=1807984327]
+layout_mode = 1
+anchor_left = 39.875
+anchor_top = 20.587002
+anchor_right = 39.875
+anchor_bottom = 20.587002
+offset_left = -269.0
+offset_top = -251.4801
+offset_right = 269.0
+offset_bottom = 251.5199
+script = ExtResource("8_5s3b1")
+
+[node name="Sprite2D" type="TextureRect" parent="Control/AimJoystick" unique_id=1390262602]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.586
+anchor_top = 0.549
+anchor_right = 0.586
+anchor_bottom = 0.549
+offset_left = -199.2681
+offset_top = -192.14702
+offset_right = 513.23566
+offset_bottom = 520.2008
+scale = Vector2(0.55859375, 0.5390625)
+texture = ExtResource("9_ur1gr")
+expand_mode = 1
+
+[node name="palanca" type="TextureRect" parent="Control/AimJoystick" unique_id=301159090]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.58400005
+anchor_top = 0.565
+anchor_right = 0.58400005
+anchor_bottom = 0.565
+offset_left = -96.19205
+offset_top = -96.19502
+offset_right = 31.807953
+offset_bottom = 31.804993
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("10_006gs")
+expand_mode = 1
+
+[node name="Pause" type="TouchScreenButton" parent="Control" unique_id=1631902585]
+position = Vector2(1748.0001, 42)
+scale = Vector2(2.27451, 2.4285715)
+texture_normal = ExtResource("11_x4nd3")
+texture_pressed = ExtResource("12_5jh5t")
+shape = SubResource("RectangleShape2D_006gs")
+action = "pause"
+
+[connection signal="pressed" from="Control/right" to="." method="_on_right_pressed"]
+[connection signal="released" from="Control/right" to="." method="_on_right_released"]
+[connection signal="pressed" from="Control/left" to="." method="_on_left_pressed"]
+[connection signal="released" from="Control/left" to="." method="_on_left_released"]
+[connection signal="pressed" from="Control/Top" to="." method="_on_top_pressed"]
+[connection signal="released" from="Control/Top" to="." method="_on_top_released"]
+[connection signal="pressed" from="Control/Circulo" to="." method="_on_circulo_pressed"]
+[connection signal="released" from="Control/Circulo" to="." method="_on_circulo_released"]
+[connection signal="pressed" from="Control/Cuadrado" to="." method="_on_cuadrado_pressed"]
+[connection signal="released" from="Control/Cuadrado" to="." method="_on_cuadrado_released"]
+[connection signal="pressed" from="Control/Pause" to="." method="_on_pause_pressed"]
+[connection signal="released" from="Control/Pause" to="." method="_on_pause_released"]
