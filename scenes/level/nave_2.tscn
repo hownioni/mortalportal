@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://bvf44yfxp3wa4"]
+
+[ext_resource type="Texture2D" uid="uid://cipljcrignmr7" path="res://assets/backgrounds/v-police.png" id="1_omjvs"]
+
+[node name="Nave2" type="StaticBody2D" unique_id=588959079]
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1806174730]
+texture = ExtResource("1_omjvs")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=947436891]
+polygon = PackedVector2Array(-82, 22, -82, 15, -39, -4, -8, -24, 49, -24, 82, -6, 77, 9, 66, 18, 53, 18, 47, 23, 47, 26, 12, 30, 7, 23, -23, 24, -28, 28, -31, 28, -35, 24, -38, 27, -52, 29, -63, 29, -73, 24, -77, 24)

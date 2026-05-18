@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://b7q62guvm8fkg"]
+
+[ext_resource type="Texture2D" uid="uid://dluryuln86dl" path="res://assets/backgrounds/v-truck.png" id="1_ap2q1"]
+
+[node name="Nave1" type="StaticBody2D" unique_id=1725163265]
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2117270381]
+texture = ExtResource("1_ap2q1")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=2102008816]
+polygon = PackedVector2Array(-118, 16, -83, -18, -47, -18, -46, -12, -34, -12, -34, -21, -24, -36, 21, -36, 21, -31, 81, -30, 89, -36, 124, -36, 124, 41, 112, 52, 101, 52, 89, 43, 60, 43, 58, 47, 17, 47, 10, 50, 1, 50, -5, 46, -12, 51, -18, 51, -25, 43, -34, 43, -34, 39, -40, 39, -55, 51, -101, 51, -106, 48, -113, 43, -118, 43)

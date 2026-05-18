@@ -38,6 +38,9 @@ func _create_lvl(lvl_num: int) -> void:
 
 func _remove_lvl() -> void:
 	_insted_lvl.queue_free()
+	for portal in get_tree().get_nodes_in_group("portals"):
+		portal.queue_free()
+	
 
 func _reset_lvl() -> void:
 	player.respawn(_player_spawn.global_position)
