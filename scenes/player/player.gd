@@ -21,8 +21,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
     # Add the gravity.
-    if not is_grounded:
-        velocity.y += GRAVITY * delta
+    velocity.y += GRAVITY * delta
 
     ### INPUT
     # Jump

@@ -14,4 +14,4 @@ func _process(_delta: float) -> void:
 
 func _physics_process(_delta: float) -> void:
     var gun_pivot: Node2D = player.get_node("GunPivot")
-    global_position = gun_pivot.global_position + sub_viewport_container.global_position
+    global_position = gun_pivot.position
