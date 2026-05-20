@@ -33,7 +33,8 @@ var can_jump := true
 
 
 func _ready() -> void:
-	add_to_group("characters")
+	# Grupo único para que los enemigos no confundan al Player con otros cuerpos
+	add_to_group("player") 
 	mobile_mode = GameSettings.mobile_mode
 
 
@@ -96,13 +97,6 @@ func _physics_process(delta: float) -> void:
 
 		animated_sprite_2d.flip_h = global_position.x > mouse_pos.x
 
-		var look_dir := 1 if animated_sprite_2d.flip_h else -1
-
-		gun_pivot.position.x = (
-			look_dir *
-			abs(gun_pivot.position.x)
-		)
-
 		gun_pivot.look_at(mouse_pos)
 
 
@@ -126,34 +120,19 @@ func _physics_process(delta: float) -> void:
 	# ======================================
 	# ANIMACIONES
 	# ======================================
-
-	# JUMP
 	if velocity.y < -50:
-
 		play_anim("jump")
 
-
-	# FALL
 	elif velocity.y > 50 and not is_grounded:
-
 		play_anim("jump")
 
-
-	# CROUCH
 	elif Input.is_action_pressed("down"):
-
 		play_anim("crouch")
 
-
-	# RUN
 	elif abs(velocity.x) > 20:
-
 		play_anim("run")
 
-
-	# IDLE
 	else:
-
 		play_anim("idle")
 
 
@@ -163,6 +142,22 @@ func _physics_process(delta: float) -> void:
 	custom_move_and_slide(delta)
 
 	global_position = global_position.round()
+
+	# =========================================================
+	# DETECTOR DE ENEMIGOS ABSOLUTO (Por Distancia Matemática)
+	# =========================================================
+	# Obtenemos todos los nodos que pertenezcan al grupo "enemies"
+	var todos_los_enemigos := get_tree().get_nodes_in_group("enemies")
+	
+	for enemigo in todos_los_enemigos:
+		if enemigo is Node2D:
+			# Calculamos la distancia exacta en píxeles entre el jugador y el enemigo
+			var distancia_real := global_position.distance_to(enemigo.global_position)
+			
+			# Si están a menos de 35 píxeles de distancia centro a centro, el jugador muere
+			if distancia_real < 20.0:
+				die()
+				break
 
 
 # ==========================================

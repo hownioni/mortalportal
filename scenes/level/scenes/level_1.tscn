@@ -8,6 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://df4a2g80mef1f" path="res://assets/backgrounds/vacio.png" id="6_erj84"]
 [ext_resource type="PackedScene" uid="uid://b7q62guvm8fkg" path="res://scenes/level/nave_1.tscn" id="7_qgrsm"]
 [ext_resource type="PackedScene" uid="uid://bvf44yfxp3wa4" path="res://scenes/level/nave_2.tscn" id="8_262ml"]
+[ext_resource type="PackedScene" uid="uid://d1yk6nyytpvlt" path="res://scenes/Enemies/enemyshooter2.tscn" id="9_262ml"]
+[ext_resource type="PackedScene" uid="uid://cn3eo0tt45sqy" path="res://scenes/Enemies/enemyrooler.tscn" id="10_cg01b"]
+[ext_resource type="PackedScene" uid="uid://ddehkepvutquj" path="res://scenes/Enemies/enemyshooter.tscn" id="11_1yy41"]
 
 [node name="Level" unique_id=1723402512 instance=ExtResource("1_xqitd")]
 
@@ -116,3 +119,12 @@ position = Vector2(1265, 271)
 
 [node name="Nave2" parent="." index="7" unique_id=588959079 instance=ExtResource("8_262ml")]
 position = Vector2(1528, 362)
+
+[node name="Enemyshooter2" parent="." index="8" unique_id=617260529 instance=ExtResource("9_262ml")]
+position = Vector2(894, 468)
+
+[node name="Enemyrooler" parent="." index="9" unique_id=700454105 instance=ExtResource("10_cg01b")]
+position = Vector2(515, 357)
+
+[node name="Enemyshooter" parent="." index="10" unique_id=2070498209 instance=ExtResource("11_1yy41")]
+position = Vector2(368, 226)

@@ -46,6 +46,7 @@ version_control/autoload_on_startup=true
 [global_group]
 
 portals=""
+enemies=""
 
 [input]
 
