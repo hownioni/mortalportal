@@ -10,38 +10,12 @@
 [ext_resource type="Texture2D" uid="uid://bxo5rh5xwt58l" path="res://assets/GUI/buttons/Botones menú/CONTINUAR_P.png" id="8_v8weq"]
 [ext_resource type="Texture2D" uid="uid://bqa60xom4f1ek" path="res://assets/GUI/buttons/Botones menú/CONTINUAR_H.png" id="9_tmdk0"]
 [ext_resource type="Texture2D" uid="uid://cpoisv8qmxpue" path="res://assets/GUI/buttons/Botones menú/SALIR (1).png" id="10_gh2rg"]
+[ext_resource type="Texture2D" uid="uid://kg7xgm4j2gqi" path="res://assets/GUI/buttons/OPCIONES (1).png" id="10_v8weq"]
 [ext_resource type="Texture2D" uid="uid://cd8it0sk3tc86" path="res://assets/GUI/buttons/Botones menú/SALIR_P.png" id="11_4tae7"]
+[ext_resource type="Texture2D" uid="uid://7s1gy5b7713l" path="res://assets/GUI/buttons/OPCIONES_P.png" id="11_tmdk0"]
+[ext_resource type="Texture2D" uid="uid://wropo8mr2ujq" path="res://assets/GUI/buttons/OPCIONES_H.png" id="12_gh2rg"]
 [ext_resource type="Texture2D" uid="uid://vy1w8716krh5" path="res://assets/GUI/buttons/Botones menú/SALIR_H.png" id="12_nymad"]
 [ext_resource type="Script" uid="uid://ceyv5n07afv0q" path="res://scenes/GUI/menus/main/modo_button.gd" id="13_gbny5"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vc5wb"]
-bg_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ds0kv"]
-bg_color = Color(0.63529414, 0.63529414, 0.63529414, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-shadow_color = Color(0, 0, 0, 0.20392157)
-shadow_size = 5
-shadow_offset = Vector2(0, 4)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7hvb7"]
-bg_color = Color(0.8235294, 0.8235294, 0.8235294, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-shadow_color = Color(0, 0, 0, 0.20392157)
-shadow_size = 5
-shadow_offset = Vector2(0, 4)
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vc5wb"]
 
 [node name="MainMenu" type="Control" unique_id=1922916655]
 process_mode = 3
@@ -107,19 +81,12 @@ texture_normal = ExtResource("7_j114e")
 texture_pressed = ExtResource("8_v8weq")
 texture_hover = ExtResource("9_tmdk0")
 
-[node name="OptionsButton" type="Button" parent="VBoxContainer" unique_id=275228541]
-visible = false
+[node name="OptionsButton" type="TextureButton" parent="VBoxContainer" unique_id=1080855696]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxFlat_vc5wb")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_ds0kv")
-theme_override_styles/hover = SubResource("StyleBoxFlat_7hvb7")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_vc5wb")
-text = "opciones"
+texture_normal = ExtResource("10_v8weq")
+texture_pressed = ExtResource("11_tmdk0")
+texture_hover = ExtResource("12_gh2rg")
 
 [node name="ExitButton" type="TextureButton" parent="VBoxContainer" unique_id=495752607]
 layout_mode = 2

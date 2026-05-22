@@ -1,70 +1,77 @@
 extends CharacterBody2D
 
 @export var speed := 100.0
+@export var detection_range := 250.0
 
-@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var animated_sprite = $AnimatedSprite2D
 
 const GRAVITY := 1500.0
 
-var player: Node2D
-
-@export var detection_range := 250.0
-
-@onready var floor_ray: RayCast2D = $RayCast2D
-
-func _ready() -> void:
-
-	add_to_group("enemies") # <-- Añade esto al inicio de su _ready
-	# ... el resto de su código actual ...
-	player = get_tree().get_first_node_in_group("characters")
-	animated_sprite.play("default")
-	
+var player = null
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(delta):
 
-
-
-	# GRAVEDAD
-	if not is_on_floor():
-		velocity.y += GRAVITY * delta
-
+	# =========================
+	# BUSCAR PLAYER
+	# =========================
 	if player == null:
+
+		player = get_tree().get_first_node_in_group("characters")
+
 		return
 
-	var distance := player.global_position.x - global_position.x
-	
 
-	
-	var dir: int = 0
+	# =========================
+	# GRAVEDAD
+	# =========================
+	if not is_on_floor():
 
-	# DETECCIÓN
+		velocity.y += GRAVITY * delta
+
+
+	var distance = (
+		player.global_position.x
+		- global_position.x
+	)
+
+
+	# =========================
+	# IA
+	# =========================
 	if abs(distance) < detection_range:
 
-		if abs(distance) > 20:
+		if distance > 0:
 
-			var wanted_dir: int = sign(distance)
+			velocity.x = speed
 
-			# MOVER RAYCAST AL FRENTE
-			floor_ray.position.x = wanted_dir * 20
-			
-			print(floor_ray.is_colliding())
-			# SOLO AVANZA SI HAY SUELO
-			if floor_ray.is_colliding():
-				dir = wanted_dir
+			animated_sprite.flip_h = true
 
-	velocity.x = dir * speed
+		else:
+
+			velocity.x = -speed
+
+			animated_sprite.flip_h = false
+
+	else:
+
+		velocity.x = 0
+
 
 	move_and_slide()
 
-	# FLIP
-	if dir != 0:
-		animated_sprite.flip_h = dir > 0
 
+	# =========================
 	# ANIMACIONES
-	if abs(velocity.x) > 0:
+	# =========================
+	if abs(velocity.x) > 1:
+
 		if animated_sprite.animation != "run":
+
 			animated_sprite.play("run")
+
 	else:
+
 		if animated_sprite.animation != "default":
+
 			animated_sprite.play("default")
