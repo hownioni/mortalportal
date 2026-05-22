@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://dygt6rlt7fx3l"]
+
+[ext_resource type="Script" uid="uid://bebn1obagprqk" path="res://scenes/Bullets/enemy_bullet.gd" id="1_acvh0"]
+[ext_resource type="Texture2D" uid="uid://c325uxbam8h01" path="res://assets/sprites/Shoot.png" id="2_acvh0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cuv7s"]
+radius = 3.0
+
+[node name="Enemy_bullet" type="Area2D" unique_id=2051728335]
+position = Vector2(0, -1)
+script = ExtResource("1_acvh0")
+speed = null
+
+[node name="bullet" type="Sprite2D" parent="." unique_id=506887577]
+texture = ExtResource("2_acvh0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=233661797]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_cuv7s")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1807263364]
+position = Vector2(6, -7)
+rect = Rect2(-10, 6, 9, 4)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
