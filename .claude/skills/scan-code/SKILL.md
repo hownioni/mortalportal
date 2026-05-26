@@ -2,7 +2,7 @@
 name: scan-code
 description: >
   Audits GDScript code in this Godot project for architectural violations, code smells, and
-  convention errors defined in CLAUDE.md and docs/architecture-principles.md.
+  convention errors defined in CLAUDE.md and .claude/docs/architecture-principles.md.
 
   TRIGGER THIS SKILL for any of the following:
   - User asks to scan, audit, check, review, look at, look over, look through, or inspect code
@@ -22,7 +22,7 @@ description: >
 
 # GDScript Code Scanner
 
-Audits GDScript files against the rules in `CLAUDE.md` and `docs/architecture-principles.md`.
+Audits GDScript files against the rules in `CLAUDE.md` and `.claude/docs/architecture-principles.md`.
 
 ## Scope
 
@@ -84,7 +84,7 @@ rg '\b[a-z_]+\.get_node\(' -g "*.gd" -n
 
 For each hit, read 5–10 lines of context to confirm it crosses a scene boundary.
 `$Child` shorthand within the owning scene's `_ready()` is fine. The violation is calling
-`get_node()` on a *variable* that holds another scene — you're coupling to its internal
+`get_node()` on a _variable_ that holds another scene — you're coupling to its internal
 structure rather than its public interface.
 
 **Severity: Error**
@@ -203,11 +203,13 @@ rg '\b[0-9]+\.[0-9]+\b' -g "*.gd" -n | rg -v 'const ' | rg -v '^\s*#'
 ### 5d. Naming conventions
 
 camelCase variables or functions (should be snake_case):
+
 ```bash
 rg '^(\s*)(var|func) [a-z]+[A-Z]' -g "*.gd" -n
 ```
 
 Constants not in ALL_CAPS:
+
 ```bash
 rg '^(\s*)const [a-z]' -g "*.gd" -n
 ```
