@@ -1,0 +1,119 @@
+# Project: Mortal Portal
+
+Godot 4.x game project. GDScript unless otherwise specified. New project — no legacy constraints.
+
+For deeper architectural rationale, reference: `@docs/architecture-principles.md`
+
+---
+
+## Folder Structure
+
+Organize by **game domain**, not file type. The folder tree should describe what the game does.
+
+```
+res://
+├── combat/           # damage, stats, status effects, targeting
+├── inventory/        # items, equipment, loot
+├── dialogue/         # conversation trees, speakers
+├── world/            # maps, environment, spawning
+├── characters/       # player, enemies, NPCs (each in a subfolder)
+├── ui/               # menus, HUD, popups
+├── core/             # autoloads, base classes, shared utilities
+└── assets/           # textures, audio, fonts — mirrors above structure
+```
+
+Never use engine-centric top-level folders like `scripts/`, `scenes/`, `resources/`, or `nodes/`.
+Each domain folder owns its own `.gd` files, `.tscn` scenes, and `.tres` resources.
+
+---
+
+## Architectural Rules
+
+### Scene boundaries
+
+- A scene must never reach into another scene's internal nodes (`$SubNode/Child` is fine inside the owner scene; `get_node("/root/SomeOtherScene/InternalNode")` is forbidden).
+- Expose behavior through methods and signals only. Internal node structure is private.
+
+### Communication
+
+- Use **signals** for "something happened" events crossing scene or node boundaries.
+- Use **exported variables** (`@export`) to inject dependencies rather than hardcoding node paths.
+- Reserve `EventBus` autoload for game-wide broadcast events (e.g. `player_died`, `game_paused`). Don't route everything through it.
+
+### Autoloads (singletons)
+
+Only create an autoload for systems that are genuinely global and stateful across scenes:
+
+- `EventBus` — signal hub for cross-scene events
+- `GameState` — persisted data (score, progression, settings)
+- `AudioManager` — pooled audio playback
+
+Do **not** autoload something just to avoid passing a reference. Use `@export` instead.
+
+### Composition over inheritance
+
+- Prefer child nodes as components over subclassing. Add behavior by adding a child node.
+- Maximum **2 levels** of class inheritance. If you need a 3rd, use composition instead.
+- When an entity needs a new behavior (e.g. "can take damage"), add a `HealthComponent` child node — don't subclass the entity.
+
+### Data lives in Resources
+
+- Stats, item definitions, damage formulas, and tunable constants belong in `.tres` Resource files, not hardcoded in scripts.
+- Scripts reference Resources via `@export` — this keeps logic and data separated and makes data editable in the Inspector without touching code.
+
+### Module depth (interfaces)
+
+- Each system (combat, inventory, etc.) should expose a **small, clear interface** and hide its implementation.
+- Example: `CombatSystem.apply_damage(target: Node, amount: float, type: DamageType)` — callers don't know or care about resistances, shields, VFX, or animation triggers happening inside.
+- Do not extract tiny helper nodes just to reduce line count. Meaningful encapsulation > many small files.
+
+### Change cost test
+
+If implementing a change requires editing **3 or more unrelated files**, stop and question the design before proceeding. That's a coupling smell.
+
+---
+
+## GDScript Conventions
+
+- **Naming:** `snake_case` for variables/functions, `PascalCase` for classes/nodes, `ALL_CAPS` for constants.
+- **Signals** declared at the top of the file, before variables.
+- **No magic numbers.** Every numeric constant gets a named `const` or a Resource field.
+- **Function length:** A function should do one thing. If you need a comment to separate "phases" inside a function, split it.
+- **Type hints everywhere.** Use `: Type` on all variables and `-> Type` on all function signatures.
+- **`@onready`** for node references; never assign node references in `_init()`.
+
+---
+
+## What to Do When Uncertain
+
+1. **New system needed?** Start from the domain boundary — what is the minimal public interface? Build that first, fill internals second.
+2. **Existing code smells?** Check `@docs/architecture-principles.md` §3 (Coding Practices) for the smell catalog and refactoring moves.
+3. **Unsure which architecture pattern fits?** Check `@docs/architecture-principles.md` §4 (Architectures) for the decision table.
+4. **Inheritance vs. composition?** Default to composition. Justify inheritance explicitly in a comment if you use it.
+
+## Output
+
+- Return code first. Explanation after, only if non-obvious.
+- No inline prose. Use comments sparingly - only where logic is unclear.
+- No boilerplate unless explicitly requested.
+
+## Code Rules
+
+- Simplest working solution. No over-engineering.
+- Prefer self-documenting code over excessive comments
+- No abstractions for single-use operations.
+- No speculative features or "you might also want..."
+- No docstrings or type annotations on code not being changed.
+- No error handling for scenarios that cannot happen.
+- Three similar lines is better than a premature abstraction.
+
+## Review Rules
+
+- State the bug. Show the fix. Stop.
+- No suggestions beyond the scope of the review.
+
+## Debugging Rules
+
+- Never speculate about a bug without reading the relevant code first.
+- State what you found, where, and the fix. One pass.
+- If cause is unclear: say so. Do not guess.
