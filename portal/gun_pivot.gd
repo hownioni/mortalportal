@@ -2,6 +2,7 @@ class_name GunPivot extends Node2D
 
 const SHOOT_RANGE: float = 1000.0
 const SURFACE_OFFSET: float = 2.0
+const RAY_BACK_OFFSET: float = 5.0
 
 @export var portal_scene: PackedScene
 @export var portal_surface_mask: int = 16
@@ -21,10 +22,11 @@ func _physics_process(_delta: float) -> void:
 
 
 func _fire(slot: int) -> void:
+    var dir := Vector2.RIGHT.rotated(rotation)
     var space_state := get_world_2d().direct_space_state
     var query := PhysicsRayQueryParameters2D.new()
-    query.from = global_position
-    query.to = global_position + Vector2.RIGHT.rotated(rotation) * SHOOT_RANGE
+    query.from = global_position - dir * RAY_BACK_OFFSET
+    query.to = global_position + dir * SHOOT_RANGE
     query.collision_mask = portal_surface_mask
     var result := space_state.intersect_ray(query)
     if result.is_empty():
