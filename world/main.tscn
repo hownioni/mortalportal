@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://cksqwwa8u8fs3" path="res://world/levels/level_0.tscn" id="3_spvjk"]
 [ext_resource type="Script" uid="uid://iwkny3iy18nc" path="res://world/cameras/low_res_camera.gd" id="4_spvjk"]
 [ext_resource type="Script" uid="uid://bqfxpi3wtxiha" path="res://world/cameras/high_res_camera.gd" id="5_cmo1i"]
+[ext_resource type="Script" uid="uid://38r8offbvk56" path="res://characters/player/portal_arm.gd" id="6_gu74f"]
+[ext_resource type="Texture2D" uid="uid://cqjv3yb2n801r" path="res://characters/player/assets/portal_arm.png" id="7_04q08"]
 
 [node name="Main" type="Node2D" unique_id=481075003]
 
@@ -24,7 +26,8 @@ audio_listener_enable_2d = true
 size = Vector2i(640, 360)
 render_target_update_mode = 4
 
-[node name="Player" parent="SubViewportContainer/SubViewport" unique_id=655401657 instance=ExtResource("1_4f7fj")]
+[node name="Player" parent="SubViewportContainer/SubViewport" unique_id=655401657 node_paths=PackedStringArray("portal_container") instance=ExtResource("1_4f7fj")]
+portal_container = NodePath("..")
 
 [node name="LevelController" type="Node" parent="SubViewportContainer/SubViewport" unique_id=501629347 node_paths=PackedStringArray("player")]
 script = ExtResource("2_4f7fj")
@@ -40,3 +43,13 @@ follow_target = NodePath("../Player")
 script = ExtResource("5_cmo1i")
 sub_viewport_container = NodePath("../SubViewportContainer")
 player = NodePath("../SubViewportContainer/SubViewport/Player")
+
+[node name="PortalArm" type="Node2D" parent="." unique_id=1445605154 node_paths=PackedStringArray("player", "sub_viewport_container", "sub_viewport")]
+script = ExtResource("6_gu74f")
+player = NodePath("../SubViewportContainer/SubViewport/Player")
+sub_viewport_container = NodePath("../SubViewportContainer")
+sub_viewport = NodePath("../SubViewportContainer/SubViewport")
+
+[node name="Sprite2D" type="Sprite2D" parent="PortalArm" unique_id=1286606901]
+position = Vector2(5, 0)
+texture = ExtResource("7_04q08")
