@@ -12,6 +12,7 @@ player_spawn = NodePath("PlayerSpawn")
 [node name="PlayerSpawn" type="Node2D" parent="." unique_id=418900236]
 
 [node name="WorldBounds" type="Area2D" parent="." unique_id=1856689355]
+collision_mask = 4
 script = ExtResource("1_8hxjk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBounds" unique_id=502000990]

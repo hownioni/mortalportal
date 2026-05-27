@@ -3,13 +3,40 @@
 [ext_resource type="PackedScene" uid="uid://wc3shtlpb0kq" path="res://characters/player/player.tscn" id="1_4f7fj"]
 [ext_resource type="Script" uid="uid://corx0kcfrfm4a" path="res://world/level_controller.gd" id="2_4f7fj"]
 [ext_resource type="PackedScene" uid="uid://cksqwwa8u8fs3" path="res://world/levels/level_0.tscn" id="3_spvjk"]
+[ext_resource type="Script" uid="uid://iwkny3iy18nc" path="res://world/cameras/low_res_camera.gd" id="4_spvjk"]
+[ext_resource type="Script" uid="uid://bqfxpi3wtxiha" path="res://world/cameras/high_res_camera.gd" id="5_cmo1i"]
 
 [node name="Main" type="Node2D" unique_id=481075003]
 
-[node name="Player" parent="." unique_id=655401657 instance=ExtResource("1_4f7fj")]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1033573114]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="LevelController" type="Node" parent="." unique_id=501629347 node_paths=PackedStringArray("player")]
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1086335539]
+process_mode = 3
+disable_3d = true
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+audio_listener_enable_2d = true
+size = Vector2i(1920, 1080)
+
+[node name="Player" parent="SubViewportContainer/SubViewport" unique_id=655401657 instance=ExtResource("1_4f7fj")]
+
+[node name="LevelController" type="Node" parent="SubViewportContainer/SubViewport" unique_id=501629347 node_paths=PackedStringArray("player")]
 script = ExtResource("2_4f7fj")
 player = NodePath("../Player")
 levels = Array[PackedScene]([ExtResource("3_spvjk")])
 metadata/_custom_type_script = "uid://corx0kcfrfm4a"
+
+[node name="Camera2D" type="Camera2D" parent="SubViewportContainer/SubViewport" unique_id=516580842 node_paths=PackedStringArray("follow_target")]
+script = ExtResource("4_spvjk")
+follow_target = NodePath("../Player")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=7312157 node_paths=PackedStringArray("sub_viewport_container", "player")]
+zoom = Vector2(3, 3)
+script = ExtResource("5_cmo1i")
+sub_viewport_container = NodePath("../SubViewportContainer")
+player = NodePath("../SubViewportContainer/SubViewport/Player")

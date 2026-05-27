@@ -30,7 +30,6 @@ position = Vector2(440, 160)
 [node name="WorldBounds" parent="." index="2" unique_id=1856689355]
 position = Vector2(568, 280)
 collision_layer = 0
-collision_mask = 4
 
 [node name="CollisionShape2D" parent="WorldBounds" index="0" unique_id=502000990]
 shape = SubResource("WorldBoundaryShape2D_hcby0")
