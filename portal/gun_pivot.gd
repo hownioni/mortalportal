@@ -10,10 +10,16 @@ var portal_container: Node
 
 var _portal_a: Portal
 var _portal_b: Portal
+var _base_position_x: float
+
+
+func _ready() -> void:
+    _base_position_x = position.x
 
 
 func _physics_process(_delta: float) -> void:
     rotation = (get_global_mouse_position() - global_position).angle()
+    position.x = _base_position_x * (-1.0 if cos(rotation) < 0.0 else 1.0)
     if Input.is_action_just_pressed("fire_one"):
         _fire(0)
     elif Input.is_action_just_pressed("fire_two"):

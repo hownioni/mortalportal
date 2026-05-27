@@ -4,7 +4,7 @@ const EXIT_BUFFER := 40
 const MAX_TELEPORT_SPEED: float = 20000.0
 const EXIT_SPEED_BOOST: float = 1.1
 
-@export var linked_portal: Area2D
+@export var linked_portal: Portal
 @export var palette_index: int = 0
 
 @onready var _sprite: AnimatedSprite2D = $AnimatedSprite2D

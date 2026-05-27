@@ -1,6 +1,6 @@
 class_name PortalMovementComponent extends Node
 
-const _DEG_45 := PI / 4
+const GROUND_DOT_THRESHOLD: float = 0.707
 const WALL_QUERY_OFFSET: float = -2.0
 
 @export var body: CharacterBody2D
@@ -18,14 +18,14 @@ func tick(delta: float) -> void:
     var collision := body.move_and_collide(body.velocity * delta)
     if not collision:
         return
-    if collision.get_normal().dot(Vector2.UP) > _DEG_45:
+    if collision.get_normal().dot(Vector2.UP) > GROUND_DOT_THRESHOLD:
         is_grounded = true
     if _find_portal_at_collision(collision):
         return
     body.velocity = body.velocity.slide(collision.get_normal())
     var remainder: Vector2 = collision.get_remainder()
     var slide_collision := body.move_and_collide(remainder.slide(collision.get_normal()))
-    if slide_collision and slide_collision.get_normal().dot(Vector2.UP) > _DEG_45:
+    if slide_collision and slide_collision.get_normal().dot(Vector2.UP) > GROUND_DOT_THRESHOLD:
         is_grounded = true
 
 
