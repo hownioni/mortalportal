@@ -12,6 +12,7 @@ const JUMP_BUFFER_TIME: float = 0.15
 const COYOTE_TIME: float = 0.10
 const ANIM_JUMP_THRESHOLD: float = 50.0
 const ANIM_RUN_THRESHOLD: float = 20.0
+const GATHER_TIME: float = 0.05
 
 @onready var _sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var _movement: PortalMovementComponent = $PortalMovementComponent
@@ -19,6 +20,8 @@ const ANIM_RUN_THRESHOLD: float = 20.0
 var _alive: bool = true
 var _jump_buffer: float = 0.0
 var _coyote_timer: float = 0.0
+var _gathering: bool = false
+var _gather_timer: float = 0.0
 
 
 func _ready() -> void:
@@ -48,10 +51,16 @@ func _handle_jump(delta: float) -> void:
         _jump_buffer = JUMP_BUFFER_TIME
     else:
         _jump_buffer = maxf(0.0, _jump_buffer - delta)
-    if _jump_buffer > 0.0 and (_movement.is_grounded or _coyote_timer > 0.0):
-        velocity.y = JUMP_FORCE
+    if not _gathering and _jump_buffer > 0.0 and (_movement.is_grounded or _coyote_timer > 0.0):
+        _gathering = true
+        _gather_timer = GATHER_TIME
         _jump_buffer = 0.0
         _coyote_timer = 0.0
+    if _gathering:
+        _gather_timer = maxf(0.0, _gather_timer - delta)
+        if _gather_timer == 0.0:
+            _gathering = false
+            velocity.y = JUMP_FORCE
 
 
 func _apply_movement(delta: float) -> void:
@@ -64,8 +73,12 @@ func _apply_movement(delta: float) -> void:
 
 
 func _update_animation() -> void:
-    if absf(velocity.y) > ANIM_JUMP_THRESHOLD:
+    if _gathering:
+        _play_anim("gather")
+    elif not _movement.is_grounded and velocity.y < -ANIM_JUMP_THRESHOLD:
         _play_anim("jump")
+    elif not _movement.is_grounded and velocity.y > ANIM_JUMP_THRESHOLD:
+        _play_anim("fall")
     elif Input.is_action_pressed("down"):
         _play_anim("crouch")
     elif absf(velocity.x) > ANIM_RUN_THRESHOLD:
