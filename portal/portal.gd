@@ -3,7 +3,7 @@ class_name Portal extends Area2D
 const EXIT_BUFFER := 40
 
 @export var linked_portal: Area2D
-@export var portal_color: Color
+@export var palette_index: int = 0
 
 @onready var _sprite: AnimatedSprite2D = $AnimatedSprite2D
 
@@ -12,7 +12,7 @@ func _ready() -> void:
 	add_to_group("portals")
 	if _sprite.material:
 		_sprite.material = _sprite.material.duplicate()
-		_sprite.material.set_shader_parameter("replace_color", portal_color)
+		_sprite.material.set_shader_parameter("palette_index", palette_index)
 
 
 func _physics_process(_delta: float) -> void:
