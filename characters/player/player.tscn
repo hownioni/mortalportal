@@ -64,7 +64,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_x5dtk")
 }],
-"loop": true,
+"loop": false,
 "name": &"crouch",
 "speed": 5.0
 }, {
@@ -138,7 +138,7 @@ script = ExtResource("1_exd8k")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1513583732]
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_5dc8e")
-animation = &"idle"
+animation = &"crouch"
 
 [node name="BodyShape" type="CollisionShape2D" parent="." unique_id=1448811003]
 position = Vector2(0, -15)
