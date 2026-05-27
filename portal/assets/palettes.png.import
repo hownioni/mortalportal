@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c3ng4v0n4ougs"
-path="res://.godot/imported/player_down.png-dbb8305d395897755571787739e36944.ctex"
+uid="uid://bk3ucbfn8mkg"
+path="res://.godot/imported/palettes.png-bb39c948a34c79bfb95c28f1b185801e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/player/assets/agacharse/player_down.png"
-dest_files=["res://.godot/imported/player_down.png-dbb8305d395897755571787739e36944.ctex"]
+source_file="res://portal/assets/palettes.png"
+dest_files=["res://.godot/imported/palettes.png-bb39c948a34c79bfb95c28f1b185801e.ctex"]
 
 [params]
 

@@ -2,7 +2,7 @@
 name: scan-code
 description: >
   Audits GDScript code in this Godot project for architectural violations, code smells, and
-  convention errors defined in CLAUDE.md and .claude/docs/architecture-principles.md.
+  convention errors defined in CLAUDE.md and docs/architecture-principles.md.
 
   TRIGGER THIS SKILL for any of the following:
   - User asks to scan, audit, check, review, look at, look over, look through, or inspect code
@@ -22,7 +22,7 @@ description: >
 
 # GDScript Code Scanner
 
-Audits GDScript files against the rules in `CLAUDE.md` and `.claude/docs/architecture-principles.md`.
+Audits GDScript files against the rules in `CLAUDE.md` and `docs/architecture-principles.md`.
 
 ## Scope
 

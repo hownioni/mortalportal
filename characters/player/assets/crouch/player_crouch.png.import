@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://pgi3mr6selap"
-path="res://.godot/imported/portal_2.png-55aebdc00296e1d1d785237a716a726b.ctex"
+uid="uid://dh5gyxd7qiwbn"
+path="res://.godot/imported/player_crouch.png-e8dac44382481f9c9a9d5ae6fb19f007.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://portal/assets/portal_2.png"
-dest_files=["res://.godot/imported/portal_2.png-55aebdc00296e1d1d785237a716a726b.ctex"]
+source_file="res://characters/player/assets/crouch/player_crouch.png"
+dest_files=["res://.godot/imported/player_crouch.png-e8dac44382481f9c9a9d5ae6fb19f007.ctex"]
 
 [params]
 

@@ -2,7 +2,7 @@
 
 Godot 4.x game project. GDScript unless otherwise specified. New project — no legacy constraints.
 
-For deeper architectural rationale, reference: `@.claude/docs/architecture-principles.md`
+For deeper architectural rationale, reference: `@docs/architecture-principles.md`
 
 ---
 
@@ -87,8 +87,8 @@ If implementing a change requires editing **3 or more unrelated files**, stop an
 ## What to Do When Uncertain
 
 1. **New system needed?** Start from the domain boundary — what is the minimal public interface? Build that first, fill internals second.
-2. **Existing code smells?** Check `@.claude/docs/architecture-principles.md` §3 (Coding Practices) for the smell catalog and refactoring moves.
-3. **Unsure which architecture pattern fits?** Check `@.claude/docs/architecture-principles.md` §4 (Architectures) for the decision table.
+2. **Existing code smells?** Check `@docs/architecture-principles.md` §3 (Coding Practices) for the smell catalog and refactoring moves.
+3. **Unsure which architecture pattern fits?** Check `@docs/architecture-principles.md` §4 (Architectures) for the decision table.
 4. **Inheritance vs. composition?** Default to composition. Justify inheritance explicitly in a comment if you use it.
 
 ## Output
