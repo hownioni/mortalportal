@@ -73,3 +73,27 @@ func _physics_process(delta: float) -> void:
 func _play_anim(anim_name: String) -> void:
 	if _sprite.animation != anim_name:
 		_sprite.play(anim_name)
+
+
+func die() -> void:
+	if not _alive:
+		return
+	_alive = false
+	_sprite.visible = false
+	process_mode = Node.PROCESS_MODE_DISABLED
+	died.emit()
+
+
+func respawn(pos: Vector2) -> void:
+	if _alive:
+		return
+	_alive = true
+	global_position = pos
+	velocity = Vector2.ZERO
+	_sprite.visible = true
+	process_mode = Node.PROCESS_MODE_INHERIT
+
+
+func _on_enemy_hitbox_body_entered(body: Node2D) -> void:
+	if body.is_in_group("enemies"):
+		die()
