@@ -18,6 +18,8 @@ const GATHER_TIME: float = 0.05
 @onready var _movement: PortalMovementComponent = $PortalMovementComponent
 @onready var gun_pivot: GunPivot = $GunPivot
 
+@export var portal_container: Node
+
 var gun_rotation: float:
     get:
         return gun_pivot.rotation
@@ -31,6 +33,7 @@ var _gather_timer: float = 0.0
 
 func _ready() -> void:
     add_to_group("player")
+    gun_pivot.portal_container = portal_container
 
 
 func _physics_process(delta: float) -> void:
