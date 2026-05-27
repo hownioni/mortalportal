@@ -1,5 +1,4 @@
 class_name WorldBounds extends Area2D
 
-func _on_body_entered(body: Node2D) -> void:
-	if body.is_in_group("player"):
-		body.die()
+func _on_body_entered(body: Player) -> void:
+    body.die()
