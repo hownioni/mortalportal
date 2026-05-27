@@ -89,3 +89,18 @@ func _physics_process(delta: float) -> void:
 - GUI / HUD nodes: remain outside SubViewport as a CanvasLayer sibling of SubViewportContainer.
 - Camera bounds / level limits: not part of this system.
 - project.godot window size settings: no change needed.
+
+---
+
+## Deferred: runtime resolution switching
+
+Resolution is currently hardcoded at 640x360 (via `project.godot` and the SubViewport `size=1920x1080` + `zoom=(3,3)`). A future settings menu must:
+
+1. Present resolution options to the player in-game.
+2. Save the chosen resolution to `user://settings.cfg` via `ConfigFile`.
+3. On startup and on change, apply by updating:
+   - `DisplayServer.window_set_size` (or equivalent)
+   - `SubViewport.size`
+   - `HighResCamera.zoom` so the high-res layer continues to match the visible area
+
+When implementing, verify the HighResCamera zoom math against the SubViewport size at that time.
