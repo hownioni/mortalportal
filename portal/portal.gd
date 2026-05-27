@@ -3,10 +3,16 @@ class_name Portal extends Area2D
 const EXIT_BUFFER := 40
 
 @export var linked_portal: Area2D
+@export var sprite_frames: SpriteFrames
+
+@onready var _sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 
 func _ready() -> void:
 	add_to_group("portals")
+	if sprite_frames:
+		_sprite.sprite_frames = sprite_frames
+		_sprite.play()
 
 
 func _physics_process(_delta: float) -> void:
