@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://be88yyt8oodmp"]
+
+[ext_resource type="Script" uid="uid://dfib0uagqx4h0" path="res://next_level_portal.gd" id="1_nevfy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nevfy"]
+size = Vector2(51, 83)
+
+[node name="NextLevelPortal" type="Area2D" unique_id=1985209726]
+script = ExtResource("1_nevfy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1226117162]
+position = Vector2(15.5, 31.5)
+shape = SubResource("RectangleShape2D_nevfy")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=898672971]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

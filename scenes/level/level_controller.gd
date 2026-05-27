@@ -52,3 +52,16 @@ func _input(event: InputEvent) -> void:
 		Debug.Save.save_current_slot()
 	if event.is_action_pressed("inc_lvl_test"):
 		_curr_lvl = min(_curr_lvl + 1, levels.size())
+		
+func next_level():
+
+	_curr_lvl += 1
+
+	if _curr_lvl > levels.size():
+
+		_curr_lvl = 1
+
+
+	_remove_lvl()
+
+	_create_lvl(_curr_lvl)

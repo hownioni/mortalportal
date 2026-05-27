@@ -69,7 +69,7 @@ position = Vector2(92, 792.99994)
 scale = Vector2(4.26, 4.226)
 texture_normal = ExtResource("4_femkx")
 shape = SubResource("RectangleShape2D_5s3b1")
-action = "crouch"
+action = "down"
 
 [node name="Circulo" type="TouchScreenButton" parent="Control" unique_id=1358095026]
 position = Vector2(904.99994, 779)

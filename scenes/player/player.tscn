@@ -73,7 +73,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_fm80t")
 }],
-"loop": true,
+"loop": false,
 "name": &"crouch",
 "speed": 5.0
 }, {
@@ -136,7 +136,7 @@ animations = [{
 size = Vector2(4, 29)
 
 [node name="Player" type="CharacterBody2D" unique_id=1344830218]
-collision_layer = 12
+collision_layer = 13
 collision_mask = 3
 script = ExtResource("1_gmlin")
 
