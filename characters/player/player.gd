@@ -16,6 +16,11 @@ const GATHER_TIME: float = 0.05
 
 @onready var _sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var _movement: PortalMovementComponent = $PortalMovementComponent
+@onready var gun_pivot: GunPivot = $GunPivot
+
+var gun_rotation: float:
+    get:
+        return gun_pivot.rotation
 
 var _alive: bool = true
 var _jump_buffer: float = 0.0
