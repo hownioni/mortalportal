@@ -1,6 +1,7 @@
 class_name PortalMovementComponent extends Node
 
 const _DEG_45 := PI / 4
+const WALL_QUERY_OFFSET: float = -2.0
 
 @export var body: CharacterBody2D
 
@@ -31,7 +32,7 @@ func tick(delta: float) -> void:
 func _find_portal_at_collision(collision: KinematicCollision2D) -> Area2D:
 	var space_state := body.get_world_2d().direct_space_state
 	var query := PhysicsPointQueryParameters2D.new()
-	query.position = collision.get_position() + collision.get_normal() * -2.0
+	query.position = collision.get_position() + collision.get_normal() * WALL_QUERY_OFFSET
 	query.collide_with_areas = true
 	query.collide_with_bodies = false
 	for result in space_state.intersect_point(query):
