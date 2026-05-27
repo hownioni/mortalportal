@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends PortalEntity
 
 @export var speed := 100.0
 @export var detection_range := 250.0
@@ -12,66 +12,66 @@ var player = null
 
 func _physics_process(delta):
 
-	# =========================
-	# BUSCAR PLAYER
-	# =========================
-	if player == null:
+    # =========================
+    # BUSCAR PLAYER
+    # =========================
+    if player == null:
 
-		player = get_tree().get_first_node_in_group("characters")
+        player = get_tree().get_first_node_in_group("characters")
 
-		return
-
-
-	# =========================
-	# GRAVEDAD
-	# =========================
-	if not is_on_floor():
-
-		velocity.y += GRAVITY * delta
+        return
 
 
-	var distance = (
-		player.global_position.x
-		- global_position.x
-	)
+    # =========================
+    # GRAVEDAD
+    # =========================
+    if not is_on_floor():
+
+        velocity.y += GRAVITY * delta
 
 
-	# =========================
-	# IA
-	# =========================
-	if abs(distance) < detection_range:
-
-		if distance > 0:
-
-			velocity.x = speed
-
-			animated_sprite.flip_h = true
-
-		else:
-
-			velocity.x = -speed
-
-			animated_sprite.flip_h = false
-
-	else:
-
-		velocity.x = 0
+    var distance = (
+        player.global_position.x
+        - global_position.x
+    )
 
 
-	move_and_slide()
+    # =========================
+    # IA
+    # =========================
+    if abs(distance) < detection_range:
+
+        if distance > 0:
+
+            velocity.x = speed
+
+            animated_sprite.flip_h = true
+
+        else:
+
+            velocity.x = -speed
+
+            animated_sprite.flip_h = false
+
+    else:
+
+        velocity.x = 0
 
 
-	# =========================
-	# ANIMACIONES
-	# =========================
-	if abs(velocity.x) > 1:
+    move_and_slide()
 
-		if animated_sprite.animation != "run":
 
-			animated_sprite.play("run")
+    # =========================
+    # ANIMACIONES
+    # =========================
+    if abs(velocity.x) > 1:
 
-	else:
+        if animated_sprite.animation != "run":
 
-		if animated_sprite.animation != "default":
+            animated_sprite.play("run")
 
-			animated_sprite.play("default")
+    else:
+
+        if animated_sprite.animation != "default":
+
+            animated_sprite.play("default")
