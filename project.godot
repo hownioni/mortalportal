@@ -38,6 +38,7 @@ version_control/autoload_on_startup=true
 
 portals=""
 enemies=""
+portal_travelers=""
 
 [input]
 
