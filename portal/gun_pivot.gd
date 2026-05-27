@@ -1,7 +1,7 @@
 class_name GunPivot extends Node2D
 
 const SHOOT_RANGE: float = 1000.0
-const SURFACE_OFFSET: float = 2.0
+const SURFACE_OFFSET: float = -2.0
 
 @export var portal_scene: PackedScene
 @export var portal_surface_mask: int = 16
