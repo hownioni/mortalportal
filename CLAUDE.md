@@ -1,14 +1,31 @@
 # Project: Mortal Portal
 
-Godot 4.x game project. GDScript unless otherwise specified. New project — no legacy constraints.
+Action/Puzzle platformer in Godot 4.x. GDScript unless otherwise specified. Full-refactor.
+
+Godot 4.6 -- GL Compatibility renderer -- Jolt Physics.
 
 For deeper architectural rationale, reference: `@docs/architecture-principles.md`
 
+## Branch structure
+
+- `prerefactor` branch: original, untouched source code (reference only)
+  - mounted at `../mortalportal-prerefactor/` (git worktree).
+- `full-refactor` branch (current): active refactor target
+  - Currently a clean slate: only `docs/`, `addons/`, and `project.godot` exist.
+- `refactor-attempt-0` branch: previous attempt assisted by Claude; unsuccessful but some things could be useful
+  - mounted at `../mortalportal-refactor-attempt-0/` (git worktree)
+
+When refactoring a system always read the original before writing new code.
+You can use `refactor-attempt-0` as reference to see what has been tried, you can reuse code from it but always ask the user first.
+
 ---
+
+# Quick rule reference
 
 ## Folder Structure
 
 Organize by **game domain**, not file type. The folder tree should describe what the game does.
+The structure below is an example -- actual folders are named after the game's specific domains.
 
 ```
 res://
@@ -79,7 +96,7 @@ If implementing a change requires editing **3 or more unrelated files**, stop an
 - **Signals** declared at the top of the file, before variables.
 - **No magic numbers.** Every numeric constant gets a named `const` or a Resource field.
 - **Function length:** A function should do one thing. If you need a comment to separate "phases" inside a function, split it.
-- **Type hints everywhere.** Use `: Type` on all variables and `-> Type` on all function signatures.
+- **Type hints everywhere** on new or modified code. Do not retrofit hints onto code not being changed. Use `: Type` on all variables and `-> Type` on all function signatures.
 - **`@onready`** for node references; never assign node references in `_init()`.
 
 ---
@@ -100,6 +117,7 @@ If implementing a change requires editing **3 or more unrelated files**, stop an
 ## Code Rules
 
 - Simplest working solution. No over-engineering.
+- Simplicity applies within a system's internals. Composition and interface rules in the architectural section govern structure between systems — those take precedence.
 - Prefer self-documenting code over excessive comments
 - No abstractions for single-use operations.
 - No speculative features or "you might also want..."
