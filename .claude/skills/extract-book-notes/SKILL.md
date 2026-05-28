@@ -20,7 +20,7 @@ Parse the arguments above. You are looking for two things:
 **If both are present**, run the extraction script immediately:
 
 ```bash
-python scripts/extract_book_notes.py --pdf "<pdf_path>" --title "<book_title>"
+python .claude/scripts/extract_book_notes.py --pdf "<pdf_path>" --title "<book_title>"
 ```
 
 **If either is missing**, ask the user for what's needed before running:
@@ -39,5 +39,5 @@ After the script finishes:
 If the script fails because `anthropic` is not installed, retry with:
 
 ```bash
-uv run --with anthropic python scripts/extract_book_notes.py --pdf "<pdf_path>" --title "<book_title>"
+uv run --with anthropic python .claude/scripts/extract_book_notes.py --pdf "<pdf_path>" --title "<book_title>"
 ```
