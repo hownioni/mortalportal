@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cd1hbcummioiq" path="res://scenes/level/level_controller.tscn" id="1_sp1g2"]
 [ext_resource type="PackedScene" uid="uid://2mtod6nrr0nl" path="res://scenes/level/scenes/level_1.tscn" id="2_oabsh"]
 [ext_resource type="PackedScene" uid="uid://bd0t3d665cvlj" path="res://scenes/level/scenes/level_0.tscn" id="2_quic7"]
-[ext_resource type="PackedScene" uid="uid://c7cv3o2e8h1kv" path="res://scenes/level/scenes/level_2.tscn" id="3_quic7"]
+[ext_resource type="PackedScene" uid="uid://c7cv3o2e8h1kv" path="res://scenes/level/scenes/level_3.tscn" id="3_quic7"]
 [ext_resource type="Script" uid="uid://4k65s3jlf42h" path="res://scenes/high_res_camera.gd" id="4_o08fk"]
 [ext_resource type="PackedScene" uid="uid://c6y0y31c37leu" path="res://scenes/GUI/menus/overlay/pause/pause_overlay.tscn" id="5_mwgc4"]
 [ext_resource type="PackedScene" uid="uid://bmt4mddciqawm" path="res://buttons_android/botones.tscn" id="6_gu4ny"]
