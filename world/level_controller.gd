@@ -9,7 +9,7 @@ var _player_spawn: Node2D
 
 
 func _ready() -> void:
-    player.died.connect(_reset_lvl)
+    player.died.connect(_reset_lvl, CONNECT_DEFERRED)
     _create_lvl(0)
     player.global_position = _player_spawn.global_position
 

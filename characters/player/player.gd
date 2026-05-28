@@ -11,12 +11,14 @@ const MAX_FALL_SPEED: float = 2000.0
 const JUMP_BUFFER_TIME: float = 0.15
 const COYOTE_TIME: float = 0.10
 const ANIM_JUMP_THRESHOLD: float = 50.0
-const ANIM_RUN_THRESHOLD: float = 20.0
+const ANIM_RUN_THRESHOLD: float = 35.0
 const GATHER_TIME: float = 0.05
 
 @onready var _sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var _movement: PortalMovementComponent = $PortalMovementComponent
 @onready var gun_pivot: GunPivot = $GunPivot
+@onready var standing_shape: CollisionShape2D = $Hitbox/StandingShape
+@onready var crouch_shape: CollisionShape2D = $Hitbox/CrouchShape
 
 @export var portal_container: Node
 
@@ -29,6 +31,7 @@ var _jump_buffer: float = 0.0
 var _coyote_timer: float = 0.0
 var _gathering: bool = false
 var _gather_timer: float = 0.0
+var _crouching: bool = false
 
 
 func _ready() -> void:
@@ -39,8 +42,9 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
     _apply_gravity(delta)
     _handle_jump(delta)
+    _handle_crouch()
     _apply_movement(delta)
-    _update_animation()
+    _update_visual_state()
     _movement.tick(delta)
     global_position = global_position.round()
 
@@ -70,6 +74,10 @@ func _handle_jump(delta: float) -> void:
             _gathering = false
             velocity.y = JUMP_FORCE
 
+func _handle_crouch() -> void:
+    _crouching = Input.is_action_pressed("crouch")
+    standing_shape.set_deferred("disabled", _crouching)
+    crouch_shape.set_deferred("disabled", !_crouching)
 
 func _apply_movement(delta: float) -> void:
     var move_dir: float = Input.get_axis("left", "right")
@@ -80,19 +88,25 @@ func _apply_movement(delta: float) -> void:
     _sprite.flip_h = get_global_mouse_position().x < global_position.x
 
 
-func _update_animation() -> void:
+func _update_visual_state() -> void:
     if _gathering:
         _play_anim("gather")
+        gun_pivot.position_offset = Vector2(0, 11)
     elif not _movement.is_grounded and velocity.y < -ANIM_JUMP_THRESHOLD:
         _play_anim("jump")
+        gun_pivot.position_offset = Vector2(0, -2)
     elif not _movement.is_grounded and velocity.y > ANIM_JUMP_THRESHOLD:
         _play_anim("fall")
-    elif Input.is_action_pressed("down"):
+        gun_pivot.position_offset = Vector2(0, -2)
+    elif _crouching:
         _play_anim("crouch")
+        gun_pivot.position_offset = Vector2(0, 8)
     elif absf(velocity.x) > ANIM_RUN_THRESHOLD:
         _play_anim("run")
+        gun_pivot.position_offset = Vector2(2, 0)
     else:
         _play_anim("idle")
+        gun_pivot.position_offset = Vector2.ZERO
 
 
 func _play_anim(anim_name: String) -> void:
@@ -119,6 +133,6 @@ func respawn(pos: Vector2) -> void:
     process_mode = Node.PROCESS_MODE_INHERIT
 
 
-func _on_enemy_hitbox_body_entered(body: Node2D) -> void:
+func _on_hitbox_body_entered(body: Node2D) -> void:
     if body.is_in_group("enemies"):
         die()

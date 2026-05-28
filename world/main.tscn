@@ -23,7 +23,7 @@ disable_3d = true
 handle_input_locally = false
 canvas_item_default_texture_filter = 0
 audio_listener_enable_2d = true
-size = Vector2i(640, 360)
+size = Vector2i(1280, 720)
 render_target_update_mode = 4
 
 [node name="Player" parent="SubViewportContainer/SubViewport" unique_id=655401657 node_paths=PackedStringArray("portal_container") instance=ExtResource("1_4f7fj")]
@@ -40,6 +40,7 @@ script = ExtResource("4_spvjk")
 follow_target = NodePath("../Player")
 
 [node name="HighResCamera" type="Camera2D" parent="." unique_id=7312157 node_paths=PackedStringArray("sub_viewport_container", "player")]
+zoom = Vector2(2, 2)
 script = ExtResource("5_cmo1i")
 sub_viewport_container = NodePath("../SubViewportContainer")
 player = NodePath("../SubViewportContainer/SubViewport/Player")

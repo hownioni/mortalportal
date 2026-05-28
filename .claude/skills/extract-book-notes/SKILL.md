@@ -1,12 +1,12 @@
 ---
 name: extract-book-notes
-description: Extract opinionated, project-specific notes from a book PDF and save them to .claude/docs/book-notes/. Use whenever the user mentions a book title, a PDF path, or asks to "extract notes", "summarize a book", "process this PDF", or "add to book notes". Even if the user just says "I have this book on X, can we pull notes from it?" -- use this skill.
+description: Extract opinionated, project-specific notes from a book PDF and save them to docs/book-notes/. Use whenever the user mentions a book title, a PDF path, or asks to "extract notes", "summarize a book", "process this PDF", or "add to book notes". Even if the user just says "I have this book on X, can we pull notes from it?" -- use this skill.
 ---
 
 # Extract book notes
 
 Extracts opinionated, project-specific notes from a book PDF using a Haiku agent and saves
-the result to `.claude/docs/book-notes/`.
+the result to `docs/book-notes/`.
 
 **Arguments:** $ARGUMENTS
 
@@ -34,7 +34,7 @@ After the script finishes:
 
 1. Tell the user the output file path.
 2. Show them the first 20 lines of the generated file so they can spot-check quality.
-3. Remind them to reference it during relevant coding sessions with `@.claude/docs/book-notes/<filename>.md`.
+3. Remind them to reference it during relevant coding sessions with `@docs/book-notes/<filename>.md`.
 
 If the script fails because `anthropic` is not installed, retry with:
 
