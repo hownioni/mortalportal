@@ -33,131 +33,131 @@ var can_jump := true
 
 
 func _ready() -> void:
-    # Grupo único para que los enemigos no confundan al Player con otros cuerpos
-    add_to_group("player")
-    mobile_mode = GameSettings.mobile_mode
+	# Grupo único para que los enemigos no confundan al Player con otros cuerpos
+	add_to_group("player") 
+	mobile_mode = GameSettings.mobile_mode
 
 
 func _physics_process(delta: float) -> void:
 
-    # ======================================
-    # GRAVEDAD
-    # ======================================
-    if not is_grounded:
-        velocity.y += GRAVITY * delta
+	# ======================================
+	# GRAVEDAD
+	# ======================================
+	if not is_grounded:
+		velocity.y += GRAVITY * delta
 
-    velocity.y = clamp(
-        velocity.y,
-        -9999,
-        MAX_FALL_SPEED
-    )
-
-
-    # ======================================
-    # SALTO
-    # ======================================
-    if Input.is_action_just_pressed("jump") and can_jump:
-
-        if test_move(transform, Vector2.DOWN):
-
-            can_jump = false
-            velocity.y = JUMP_FORCE
-
-            jump_cooldown()
+	velocity.y = clamp(
+		velocity.y,
+		-9999,
+		MAX_FALL_SPEED
+	)
 
 
-    # ======================================
-    # MOVIMIENTO
-    # ======================================
-    var move_dir := Input.get_axis("left", "right")
+	# ======================================
+	# SALTO
+	# ======================================
+	if Input.is_action_just_pressed("jump") and can_jump:
 
-    if move_dir:
+		if test_move(transform, Vector2.DOWN):
 
-        velocity.x = move_toward(
-            velocity.x,
-            move_dir * RUN_SPEED,
-            ACCEL * delta
-        )
+			can_jump = false
+			velocity.y = JUMP_FORCE
 
-    else:
-
-        velocity.x = move_toward(
-            velocity.x,
-            0,
-            FRICTION * delta
-        )
+			jump_cooldown()
 
 
-    # ======================================
-    # MODO PC
-    # ======================================
-    if mobile_mode == false:
+	# ======================================
+	# MOVIMIENTO
+	# ======================================
+	var move_dir := Input.get_axis("left", "right")
 
-        var mouse_pos := get_global_mouse_position()
+	if move_dir:
 
-        animated_sprite_2d.flip_h = global_position.x > mouse_pos.x
+		velocity.x = move_toward(
+			velocity.x,
+			move_dir * RUN_SPEED,
+			ACCEL * delta
+		)
 
-        gun_pivot.look_at(mouse_pos)
+	else:
 
-
-    # ======================================
-    # MODO MOVIL
-    # ======================================
-    else:
-
-        if aim_joystick:
-
-            var aim_dir = aim_joystick.get_direction()
-
-            if aim_dir.length() > 0.1:
-
-                gun_pivot.rotation = aim_dir.angle()
-
-                if aim_dir.x != 0:
-                    animated_sprite_2d.flip_h = aim_dir.x < 0
+		velocity.x = move_toward(
+			velocity.x,
+			0,
+			FRICTION * delta
+		)
 
 
-    # ======================================
-    # ANIMACIONES
-    # ======================================
-    if velocity.y < -50:
-        play_anim("jump")
+	# ======================================
+	# MODO PC
+	# ======================================
+	if mobile_mode == false:
 
-    elif velocity.y > 50 and not is_grounded:
-        play_anim("jump")
+		var mouse_pos := get_global_mouse_position()
 
-    elif Input.is_action_pressed("down"):
-        play_anim("crouch")
+		animated_sprite_2d.flip_h = global_position.x > mouse_pos.x
 
-    elif abs(velocity.x) > 20:
-        play_anim("run")
-
-    else:
-        play_anim("idle")
+		gun_pivot.look_at(mouse_pos)
 
 
-    # ======================================
-    # MOVIMIENTO FINAL
-    # ======================================
-    custom_move_and_slide(delta)
+	# ======================================
+	# MODO MOVIL
+	# ======================================
+	else:
 
-    global_position = global_position.round()
+		if aim_joystick:
 
-    # =========================================================
-    # DETECTOR DE ENEMIGOS ABSOLUTO (Por Distancia Matemática)
-    # =========================================================
-    # Obtenemos todos los nodos que pertenezcan al grupo "enemies"
-    var todos_los_enemigos := get_tree().get_nodes_in_group("enemies")
+			var aim_dir = aim_joystick.get_direction()
 
-    for enemigo in todos_los_enemigos:
-        if enemigo is Node2D:
-            # Calculamos la distancia exacta en píxeles entre el jugador y el enemigo
-            var distancia_real := global_position.distance_to(enemigo.global_position)
+			if aim_dir.length() > 0.1:
 
-            # Si están a menos de 35 píxeles de distancia centro a centro, el jugador muere
-            if distancia_real < 20.0:
-                die()
-                break
+				gun_pivot.rotation = aim_dir.angle()
+
+				if aim_dir.x != 0:
+					animated_sprite_2d.flip_h = aim_dir.x < 0
+
+
+	# ======================================
+	# ANIMACIONES
+	# ======================================
+	if velocity.y < -50:
+		play_anim("jump")
+
+	elif velocity.y > 50 and not is_grounded:
+		play_anim("jump")
+
+	elif Input.is_action_pressed("down"):
+		play_anim("crouch")
+
+	elif abs(velocity.x) > 20:
+		play_anim("run")
+
+	else:
+		play_anim("idle")
+
+
+	# ======================================
+	# MOVIMIENTO FINAL
+	# ======================================
+	custom_move_and_slide(delta)
+
+	global_position = global_position.round()
+
+	# =========================================================
+	# DETECTOR DE ENEMIGOS ABSOLUTO (Por Distancia Matemática)
+	# =========================================================
+	# Obtenemos todos los nodos que pertenezcan al grupo "enemies"
+	var todos_los_enemigos := get_tree().get_nodes_in_group("enemies")
+	
+	for enemigo in todos_los_enemigos:
+		if enemigo is Node2D:
+			# Calculamos la distancia exacta en píxeles entre el jugador y el enemigo
+			var distancia_real := global_position.distance_to(enemigo.global_position)
+			
+			# Si están a menos de 35 píxeles de distancia centro a centro, el jugador muere
+			if distancia_real < 20.0:
+				die()
+				break
 
 
 # ==========================================
@@ -165,8 +165,8 @@ func _physics_process(delta: float) -> void:
 # ==========================================
 func play_anim(anim_name):
 
-    if animated_sprite_2d.animation != anim_name:
-        animated_sprite_2d.play(anim_name)
+	if animated_sprite_2d.animation != anim_name:
+		animated_sprite_2d.play(anim_name)
 
 
 # ==========================================
@@ -174,8 +174,8 @@ func play_anim(anim_name):
 # ==========================================
 func jump_cooldown():
 
-    await get_tree().create_timer(0.1).timeout
-    can_jump = true
+	await get_tree().create_timer(0.1).timeout
+	can_jump = true
 
 
 # ==========================================
@@ -183,15 +183,15 @@ func jump_cooldown():
 # ==========================================
 func die() -> void:
 
-    if _alive == true:
+	if _alive == true:
 
-        _alive = false
+		_alive = false
 
-        animated_sprite_2d.visible = false
+		animated_sprite_2d.visible = false
 
-        process_mode = Node.PROCESS_MODE_DISABLED
+		process_mode = Node.PROCESS_MODE_DISABLED
 
-        died.emit()
+		died.emit()
 
 
 # ==========================================
@@ -199,14 +199,14 @@ func die() -> void:
 # ==========================================
 func respawn(pos: Vector2) -> void:
 
-    if _alive == false:
+	if _alive == false:
 
-        _alive = true
+		_alive = true
 
-        global_position = pos
+		global_position = pos
 
-        velocity = Vector2.ZERO
+		velocity = Vector2.ZERO
 
-        animated_sprite_2d.visible = true
+		animated_sprite_2d.visible = true
 
-        process_mode = Node.PROCESS_MODE_INHERIT
+		process_mode = Node.PROCESS_MODE_INHERIT

@@ -12,80 +12,80 @@ var level_controller: LevelController
 
 
 func _ready() -> void:
-    level_controller = owner.level_controller
+	level_controller = owner.level_controller
 
 
 func _process(_delta: float) -> void:
 
-    # ==================================
-    # YA NO USA MOUSE
-    # AHORA SIGUE LA ROTACION DEL JOYSTICK
-    # ==================================
-    aim_line.points = [
-        Vector2.ZERO,
-        Vector2.RIGHT * 1000
-    ]
+	# ==================================
+	# YA NO USA MOUSE
+	# AHORA SIGUE LA ROTACION DEL JOYSTICK
+	# ==================================
+	aim_line.points = [
+		Vector2.ZERO,
+		Vector2.RIGHT * 1000
+	]
 
 
-    # ==================================
-    # BOTONES PORTALES
-    # ==================================
-    if Input.is_action_just_pressed("fire_one"):
-        spawn_portal("one")
+	# ==================================
+	# BOTONES PORTALES
+	# ==================================
+	if Input.is_action_just_pressed("fire_one"):
+		spawn_portal("one")
 
-    elif Input.is_action_just_pressed("fire_two"):
-        spawn_portal("two")
+	elif Input.is_action_just_pressed("fire_two"):
+		spawn_portal("two")
 
 
 func spawn_portal(type: String) -> void:
 
-    var space_state := get_world_2d().direct_space_state
+	var space_state := get_world_2d().direct_space_state
 
-    var query := PhysicsRayQueryParameters2D.create(
-        global_position,
-        global_position + transform.x * 2000,
-        1
-    )
+	var query := PhysicsRayQueryParameters2D.create(
+		global_position,
+		global_position + transform.x * 2000,
+		1
+	)
 
-    query.collide_with_areas = false
+	query.collide_with_areas = false
 
-    var result := space_state.intersect_ray(query)
-
-
-    if result:
-
-        var new_portal: Node2D = null
+	var result := space_state.intersect_ray(query)
 
 
-        if type == "one":
+	if result:
 
-            if active_portal_1:
-                active_portal_1.queue_free()
-
-            new_portal = portal_1_scene.instantiate()
-            active_portal_1 = new_portal
+		var new_portal: Node2D = null
 
 
-        elif type == "two":
+		if type == "one":
 
-            if active_portal_2:
-                active_portal_2.queue_free()
+			if active_portal_1:
+				active_portal_1.queue_free()
 
-            new_portal = portal_2_scene.instantiate()
-            active_portal_2 = new_portal
-
-
-        level_controller.add_child(new_portal)
+			new_portal = portal_1_scene.instantiate()
+			active_portal_1 = new_portal
 
 
-        # ==================================
-        # MISMA LOGICA ORIGINAL + PEGADO PARED
-        # ==================================
-        new_portal.global_position = result.position - result.normal * 2
-        new_portal.rotation = result.normal.angle()
+		elif type == "two":
+
+			if active_portal_2:
+				active_portal_2.queue_free()
+
+			new_portal = portal_2_scene.instantiate()
+			active_portal_2 = new_portal
 
 
-        if active_portal_1 and active_portal_2:
+		level_controller.add_child(new_portal)
 
-            active_portal_1.linked_portal = active_portal_2
-            active_portal_2.linked_portal = active_portal_1
+
+		# ==================================
+		# MISMA LOGICA ORIGINAL + PEGADO PARED
+		# ==================================
+		new_portal.global_position = result.position - result.normal * 2
+		new_portal.rotation = result.normal.angle()
+
+
+		if active_portal_1 and active_portal_2:
+
+			active_portal_1.linked_portal = active_portal_2
+			active_portal_2.linked_portal = active_portal_1

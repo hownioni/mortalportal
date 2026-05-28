@@ -1,42 +1,17 @@
 [gd_scene format=3 uid="uid://be88yyt8oodmp"]
 
 [ext_resource type="Script" uid="uid://dfib0uagqx4h0" path="res://next_level_portal.gd" id="1_nevfy"]
-[ext_resource type="Texture2D" uid="uid://bouwjld3vj7es" path="res://assets/tilesets/Legacy Collection/Legacy Collection/Assets/Packs/warped-Caves/PNG/environment/props/gate-01.png" id="2_kn6nn"]
-[ext_resource type="Texture2D" uid="uid://ca6dw4cf3xei" path="res://assets/tilesets/Legacy Collection/Legacy Collection/Assets/Packs/warped-Caves/PNG/environment/props/gate-02.png" id="3_4k167"]
-[ext_resource type="Texture2D" uid="uid://bnnlfmy7wqgb7" path="res://assets/tilesets/Legacy Collection/Legacy Collection/Assets/Packs/warped-Caves/PNG/environment/props/gate-03.png" id="4_cqmr5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nevfy"]
-size = Vector2(39.5, 48.5)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_kswqf"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_kn6nn")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_4k167")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_cqmr5")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_4k167")
-}],
-"loop": true,
-"name": &"default",
-"speed": 4.0
-}]
+size = Vector2(51, 83)
 
 [node name="NextLevelPortal" type="Area2D" unique_id=1985209726]
 script = ExtResource("1_nevfy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1226117162]
-position = Vector2(-4.75, -1.75)
+position = Vector2(15.5, 31.5)
 shape = SubResource("RectangleShape2D_nevfy")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=898672971]
-sprite_frames = SubResource("SpriteFrames_kswqf")
-frame_progress = 0.62233025
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
