@@ -32,36 +32,7 @@
 
 ---
 
-## Section 2: Core Architectural Philosophy
-
-### Decoupling vs. Complexity
-
-- Abstraction cost is justified when two pieces change independently at different rates, and a change to one would otherwise cascade into the other; decouple to localize future changes.
-- Prefer direct coupling when both sides change together, the codebase is small, or the indirection conceals program structure without delivering a concrete flexibility benefit.
-
-### Composition vs. Inheritance
-
-- Prefer composition (Component pattern) when an entity spans multiple independent domains, when behavior must be assembled at runtime, or when the inheritance tree is growing wide rather than deep.
-- Inheritance becomes harmful when base classes accumulate methods to satisfy diverse subclasses, creating the brittle base class problem where any base change risks breaking all derived classes simultaneously.
-
-### Global State Management
-
-- Unrestricted global access (Singleton, raw globals) makes code hard to reason about, encourages unintended coupling across distant systems, and creates race conditions in multi-threaded engines.
-- Mediate necessary global access through Service Locator (which abstracts the provider and supports null objects) or pass dependencies explicitly; limit access scope to the minimum set of callers that genuinely need it.
-
-### Performance-Aware Architecture
-
-- Game loops, entity update paths, and particle/physics systems are hot paths where cache miss rates, per-frame heap allocation, and virtual dispatch overhead directly determine frame stability; treat these differently from cold paths.
-- Let profiler data drive optimization decisions: premature abstraction that fragments data in memory or adds pointer indirection in tight loops can cost more performance than the design flexibility gains are worth.
-
-### Pragmatism Over Purity
-
-- Architectural cleanliness should yield when code is explicitly prototypal and intended to be discarded, or when the time cost of getting architecture right exceeds the shipping deadline's tolerance.
-- "Good enough" means the minimum structure that lets the current work proceed without creating irreversible technical debt; the threshold is whether the team can still freely change the affected code next week without heroics.
-
----
-
-## Section 3: Engine-Level Constraints
+## Section 2: Engine-Level Constraints
 
 ### Variant Boxing Overhead
 
@@ -231,7 +202,7 @@
 
 ---
 
-## Section 4: Pattern Selection Guide
+## Section 3: Pattern Selection Guide
 
 ### Component vs. Subclassing (Entity Architecture)
 
@@ -327,7 +298,7 @@
 | Behavior set is small and closed           | Subclassing | Bytecode    | Bytecode VM maintenance overhead not justified    |
 | Behavior must be moddable by end users     | Bytecode    | Subclassing | Bytecode ships as data, not compiled binary       |
 
-## Section 5: Pattern Catalog
+## Section 4: Pattern Catalog
 
 ---
 
@@ -353,7 +324,7 @@
 
 ---
 
-## Section 6: Pattern Combination Recipes
+## Section 5: Pattern Combination Recipes
 
 ---
 
@@ -765,7 +736,7 @@ func cast(at: Vector3, parent_node: Node) -> Node:
 
 ### Goal: Building a Robust Game Loop
 
-**Godot Built-In Solution:** Godot's engine owns the game loop entirely: `_physics_process(delta)` runs at a fixed timestep governed by `ProjectSettings: physics/common/physics_ticks_per_second`, `_process(delta)` runs per render frame, `Engine.max_physics_steps_per_frame` caps spiral-of-death catch-up, and `ProjectSettings: physics/common/physics_interpolation` eliminates the Double Buffer concern for visual rendering by smoothing positions between physics ticks with no user code. The original combination is warranted only for the user-space simulation Double Buffer case — per-actor simultaneous-update grids (cellular automata, contagion maps) where actors read each other's state in the same `_physics_process` pass — in which case the Double Buffer translation in Section 5 applies; the Game Loop and Update Method components remain engine-owned.
+**Godot Built-In Solution:** Godot's engine owns the game loop entirely: `_physics_process(delta)` runs at a fixed timestep governed by `ProjectSettings: physics/common/physics_ticks_per_second`, `_process(delta)` runs per render frame, `Engine.max_physics_steps_per_frame` caps spiral-of-death catch-up, and `ProjectSettings: physics/common/physics_interpolation` eliminates the Double Buffer concern for visual rendering by smoothing positions between physics ticks with no user code. The original combination is warranted only for the user-space simulation Double Buffer case — per-actor simultaneous-update grids (cellular automata, contagion maps) where actors read each other's state in the same `_physics_process` pass — in which case the Double Buffer translation in Section 4 applies; the Game Loop and Update Method components remain engine-owned.
 
 ---
 
@@ -1128,7 +1099,7 @@ func _on_health_changed(current: int, _max: int) -> void:
 
 ---
 
-## Section 7: Architecture Review Checklist
+## Section 6: Architecture Review Checklist
 
 ### Coupling
 
@@ -1166,13 +1137,3 @@ func _on_health_changed(current: int, _max: int) -> void:
 - Would Type Object or Bytecode replace this subclass hierarchy and support runtime extensibility without recompilation?
 - Is the Subclass Sandbox base class accreting enough provided operations to become a maintenance burden?
 - Could this fixed enum-based type system be replaced by Type Object to allow designer-defined types?
-
-### Complexity
-
-- Is the chosen pattern solving a real, present problem rather than a hypothetical future one?
-- Is the abstraction cost proportional to the actual benefit at current codebase scale?
-- Would a simpler direct approach work given the current size and team?
-- Is this pattern being applied because it fits, or because it's familiar?
-- Is a Service Locator being used where explicit dependency injection (passing the object as a parameter) is practical?
-- Is a Singleton being justified by convenient access rather than by a genuine requirement for singleness?
-- Is a Bytecode VM being built without budgeting for the required front-end authoring tool?
