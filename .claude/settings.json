@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "additionalDirectories": [
+      "../mortalportal-prerefactor/",
+      "../mortalportal-refactor-attempt-0/",
+      "../aviones/"
+    ]
+  }
+}
