@@ -97,7 +97,10 @@ code is unreliable (Godot returns 0 on parse errors) — judge by grep output.
 
 **Keep/Fix/Drop:** drop `extends PortalEntity` (→ component), drop two portal PackedScenes
 (→ `palette_index`), detection by group not `is` type. **Preserve** the one-frame-stale
-`is_grounded` ordering and the `PI/4` ground-normal dot threshold exactly.
+`is_grounded` ordering exactly. **Fix** the ground-normal dot threshold to a true 45°:
+use `cos(PI/4)` (= 0.7071), not bare `PI/4` (= 0.785, ~38.2°). The prerefactor compared a
+dot product against `PI/4` radians — a unit error; bare `PI/4` is ~38°, not 45°. `cos(PI/4)`
+is the minimal correction (the original intent was 45°, the `cos` was just missing).
 
 **Scene (user):** `Portal.tscn` — Area2D (`collision_mask = 12`) + AnimatedSprite2D (palette
 ShaderMaterial: `palette_tex` = `palettes.png`) + CollisionShape2D (~8x26).
