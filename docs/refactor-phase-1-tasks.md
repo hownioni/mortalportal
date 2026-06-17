@@ -11,9 +11,8 @@ portals, traverses them, and dies/resets within world bounds — built on the Su
 dual-camera tree and a host-agnostic `PortalMovementComponent`. No autoloads.
 
 **Contracts:** `docs/refactor-roadmap.md` (sequencing), `docs/refactor-architecture.md`
-(dependency/component/scene/event rules + Prohibited Patterns table). Behavior source of
-truth: `../mortalportal-prerefactor/` (read-only). Reuse reference (ask first):
-`../mortalportal-refactor-attempt-0/`.
+(dependency/component/scene/event rules + Prohibited Patterns table). Branch references
+(structure vs behavior, richer-wins per feature): CLAUDE.md "Reference policy".
 
 ---
 
@@ -117,8 +116,9 @@ ShaderMaterial: `palette_tex` = `palettes.png`) + CollisionShape2D (~8x26).
 `portal_gun.gd` (facing only).
 
 **Public interface:**
-- `Player extends CharacterBody2D` (`class_name Player`) — `signal died`; `@export var
-  movement: PortalMovementComponent`; methods `die()`, `respawn(pos: Vector2)`,
+- `Player extends CharacterBody2D` (`class_name Player`) — `signal died`; accesses its
+  `PortalMovementComponent` via `%` unique name (not an owner-side export); methods
+  `die()`, `respawn(pos: Vector2)`,
   `set_portal_container(c: Node2D)`, `reset_portals()`, `is_facing_left() -> bool`,
   `get_gun_global_position() -> Vector2`, `get_gun_global_rotation() -> float`.
   `_physics_process` decomposed into ~5 methods (gather/gravity/jump/horizontal/aim +
