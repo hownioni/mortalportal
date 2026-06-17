@@ -18,8 +18,10 @@ exist. The ordering below validates the two highest-risk architectural bets firs
 2. **Host-agnostic `PortalMovementComponent`** -- composition replacing the old
    `PortalEntity` base class.
 
-Source of truth for behavior: `../mortalportal-prerefactor/` (read-only).
-Reference for what was tried (ask before reusing): `../mortalportal-refactor-attempt-0/`.
+Structure/patterns reference: `../mortalportal-refactor-attempt-0/` (read-only).
+Behavior: per feature, compare both branches and start from the richer/better-built one
+(surface the diff); pull from `../mortalportal-prerefactor/` for features r-a-0 lacks.
+See CLAUDE.md "Reference policy".
 
 ---
 
