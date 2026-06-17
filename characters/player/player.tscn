@@ -1,0 +1,156 @@
+[gd_scene format=3 uid="uid://wc3shtlpb0kq"]
+
+[ext_resource type="Script" uid="uid://c52ar3hun0tlu" path="res://characters/player/player.gd" id="1_ixbpm"]
+[ext_resource type="Texture2D" uid="uid://cex7f0cmwi5x8" path="res://characters/player/assets/crouch/player_crouch.png" id="2_c6leb"]
+[ext_resource type="Texture2D" uid="uid://b5xqqb6nrts2b" path="res://characters/player/assets/jump/player_jump.png" id="3_dirf7"]
+[ext_resource type="Texture2D" uid="uid://cbphgdkwf3lfr" path="res://characters/player/assets/idle/player.png" id="4_idpv6"]
+[ext_resource type="Texture2D" uid="uid://7htk33wvcaf7" path="res://characters/player/assets/run/player_run.png" id="5_rpf03"]
+[ext_resource type="Script" uid="uid://ce6payecg7w60" path="res://characters/player/gun_pivot.gd" id="6_c6leb"]
+[ext_resource type="PackedScene" uid="uid://cinb0o3xbqcs1" path="res://portal/portal.tscn" id="7_dirf7"]
+[ext_resource type="Script" uid="uid://3xqhttdw36a6" path="res://portal/portal_movement_component.gd" id="8_idpv6"]
+[ext_resource type="Script" uid="uid://207c21wc3bk6" path="res://characters/player/hitbox.gd" id="9_rpf03"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x5dtk"]
+atlas = ExtResource("2_c6leb")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3t07l"]
+atlas = ExtResource("3_dirf7")
+region = Rect2(64, 0, 30, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_on558"]
+atlas = ExtResource("3_dirf7")
+region = Rect2(0, 0, 30, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gqopd"]
+atlas = ExtResource("4_idpv6")
+region = Rect2(2, 2, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_icpky"]
+atlas = ExtResource("3_dirf7")
+region = Rect2(32, 0, 30, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_58jvb"]
+atlas = ExtResource("5_rpf03")
+region = Rect2(0, 0, 20, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8l73k"]
+atlas = ExtResource("5_rpf03")
+region = Rect2(22, 0, 20, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aqrcq"]
+atlas = ExtResource("5_rpf03")
+region = Rect2(44, 0, 20, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d2agh"]
+atlas = ExtResource("5_rpf03")
+region = Rect2(66, 0, 20, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fpo3a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x5dtk")
+}],
+"loop": true,
+"name": &"crouch",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3t07l")
+}],
+"loop": true,
+"name": &"fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_on558")
+}],
+"loop": true,
+"name": &"gather",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gqopd")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_icpky")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_58jvb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8l73k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aqrcq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d2agh")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ixbpm"]
+size = Vector2(5, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rpf03"]
+size = Vector2(3, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x5dtk"]
+size = Vector2(3, 16)
+
+[node name="Player" type="CharacterBody2D" unique_id=1207380948]
+collision_layer = 12
+collision_mask = 3
+script = ExtResource("1_ixbpm")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1357663587]
+sprite_frames = SubResource("SpriteFrames_fpo3a")
+animation = &"idle"
+
+[node name="BodyShape" type="CollisionShape2D" parent="." unique_id=2080858910]
+position = Vector2(-0.5, 1)
+shape = SubResource("RectangleShape2D_ixbpm")
+
+[node name="GunPivot" type="Node2D" parent="." unique_id=1690091433]
+position = Vector2(-4, -6)
+script = ExtResource("6_c6leb")
+portal_scene = ExtResource("7_dirf7")
+
+[node name="AimLine" type="Line2D" parent="GunPivot" unique_id=1746796112]
+points = PackedVector2Array(0, 0, 1000, 0)
+width = 1.0
+
+[node name="PortalMovementComponent" type="Node" parent="." unique_id=815411975 node_paths=PackedStringArray("body")]
+unique_name_in_owner = true
+script = ExtResource("8_idpv6")
+body = NodePath("..")
+metadata/_custom_type_script = "uid://3xqhttdw36a6"
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=344054678]
+script = ExtResource("9_rpf03")
+
+[node name="StandingShape" type="CollisionShape2D" parent="Hitbox" unique_id=1942903578]
+position = Vector2(-0.5, 1)
+shape = SubResource("RectangleShape2D_rpf03")
+
+[node name="CrouchShape" type="CollisionShape2D" parent="Hitbox" unique_id=1515756467]
+position = Vector2(-0.5, 5)
+shape = SubResource("RectangleShape2D_x5dtk")
+disabled = true
