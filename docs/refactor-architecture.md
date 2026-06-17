@@ -117,6 +117,25 @@ Godot built-ins (`CharacterBody2D`, `Area2D`, `Node`) are level 0. A project cla
 
 `WorldBounds` is a 4-line script. That is fine — it earns its existence as a named scene boundary with a signal connection, not because it saves lines.
 
+**6. Owner accesses components by unique name; components receive their host by export.**
+
+- Owner → component: each component node sets `unique_name_in_owner = true`; the owner
+  holds `@onready var x := %ComponentName`. Never an owner-side `@export` for a fixed
+  internal child.
+- Component → host: the component declares `@export var body: <Type>`, wired in the scene
+  (dragging the node in the Inspector produces `node_paths=PackedStringArray("body")` +
+  `body = NodePath("..")`). Never `get_parent()`.
+
+**7. The owner orchestrates pipeline components; independent components self-drive.**
+
+Components in the per-frame physics/state pipeline (movement, jump, animation) expose
+methods (`move(delta)`, `tick(delta)`) and have NO `_physics_process` of their own. The
+owner calls them in a deliberate order from its `_physics_process` and passes data
+between them. This keeps the execution sequence explicit, keeps components ignorant of
+each other (no cross-component reach-through), and lets the host decide when to run them.
+Components whose behavior is genuinely independent (off-screen despawn, timed VFX) may
+self-drive with their own `_process`.
+
 ---
 
 ## Scene Rules
@@ -205,6 +224,12 @@ Required when `die()` is triggered from `body_entered` or `_physics_process`. Pr
 **5. `EventBus` for game-wide broadcasts with no clear ownership.**
 
 Nothing in the systems analyzed so far requires it. Use it for future events that need to reach systems with no direct dependency path (e.g., `game_paused`). If a signal can be connected directly, connect it directly.
+
+**6. Prefer editor (.tscn) signal connections over `connect()` in code.**
+
+When both emitter and receiver exist at edit time, connect in the scene. The connect
+dialog's "Deferred" checkbox provides `CONNECT_DEFERRED` (rule #3). Reserve `connect()`
+in `_ready()` for targets that only exist at runtime (e.g. a dynamically instanced level).
 
 ---
 
