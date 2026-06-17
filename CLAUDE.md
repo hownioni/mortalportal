@@ -8,15 +8,23 @@ For deeper architectural rationale, reference: `@docs/architecture-principles.md
 
 ## Branch structure
 
-- `prerefactor` branch: original, untouched source code (reference only)
-  - mounted at `../mortalportal-prerefactor/` (git worktree).
-- `full-refactor` branch (current): active refactor target
-  - Currently a clean slate: only `docs/`, `addons/`, and `project.godot` exist.
-- `refactor-attempt-0` branch: previous attempt assisted by Claude; unsuccessful but some things could be useful
-  - mounted at `../mortalportal-refactor-attempt-0/` (git worktree)
+- `prerefactor` branch: original source — more complete, but messier code.
+  - mounted at `../mortalportal-prerefactor/` (git worktree, reference only).
+- `refactor-attempt-0` branch: earlier Claude-assisted attempt — stopped early,
+  but what it built was done mostly right.
+  - mounted at `../mortalportal-refactor-attempt-0/` (git worktree, reference only).
+- `full-refactor` branch (current): active refactor target.
 
-When refactoring a system always read the original before writing new code.
-You can use `refactor-attempt-0` as reference to see what has been tried, you can reuse code from it but always ask the user first.
+### Reference policy
+
+- **Structure and code patterns:** model on `refactor-attempt-0` — folder layout,
+  component wiring, naming, style.
+- **Behavior and features:** neither branch is the default. When a feature exists in
+  both, read both, start from whichever is more complete/better-built (often
+  `refactor-attempt-0`), and surface the comparison instead of defaulting to
+  `prerefactor`. Pull from `prerefactor` for features `refactor-attempt-0` never built.
+- Always read the relevant source(s) before writing new code. Reusing code is fine;
+  ask before copying non-trivial chunks from `refactor-attempt-0`.
 
 ---
 
@@ -72,6 +80,8 @@ Do **not** autoload something just to avoid passing a reference. Use `@export` i
 - Prefer child nodes as components over subclassing. Add behavior by adding a child node.
 - Maximum **2 levels** of class inheritance. If you need a 3rd, use composition instead.
 - When an entity needs a new behavior (e.g. "can take damage"), add a `HealthComponent` child node — don't subclass the entity.
+- Component wiring (access, host injection, orchestration, signals) follows
+  `@docs/refactor-architecture.md` Component Rules.
 
 ### Data lives in Resources
 
