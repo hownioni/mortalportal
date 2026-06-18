@@ -25,6 +25,11 @@ For deeper architectural rationale, reference: `@docs/architecture-principles.md
   `prerefactor`. Pull from `prerefactor` for features `refactor-attempt-0` never built.
 - Always read the relevant source(s) before writing new code. Reusing code is fine;
   ask before copying non-trivial chunks from `refactor-attempt-0`.
+- When creating a new domain folder or subsystem, copy the matching assets (textures,
+  `.tres` resources, source files) from `refactor-attempt-0` into the equivalent path in
+  `full-refactor` as part of the same task. Do not copy `.import` sidecars -- Godot
+  regenerates those. Do not copy `.tres` files that reference stale or wrong asset paths
+  without verifying first.
 
 ---
 
