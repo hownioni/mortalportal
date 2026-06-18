@@ -105,6 +105,18 @@ If implementing a change requires editing **3 or more unrelated files**, stop an
 
 ---
 
+## Testing
+
+GUT (`addons/gut/`). Full policy: `@docs/testing-conventions.md`.
+
+- **Deterministic** behavior (sizing math, position/clamp/zoom, "does this `Control` fit the viewport") is **test-first with GUT** -- Claude owns correctness. Run the suite as the completion gate (alongside the `--import` parse-check):
+  `godot --headless -s res://addons/gut/gut_cmdln.gd -gconfig=res://.gutconfig.json -gexit`
+- **Perceptual** behavior (camera feel: smoothing, deadzone, lookahead) is **not tested** -- expose it as `@export` / a tunable `Resource` and let the user dial it in the editor.
+- Scene wiring, physics, and input are validated by **playtest**, not unit tests.
+- Tests live in `test/unit/` and `test/integration/`, mirroring domain folders.
+
+---
+
 ## GDScript Conventions
 
 - **Naming:** `snake_case` for variables/functions, `PascalCase` for classes/nodes, `ALL_CAPS` for constants.
