@@ -1,0 +1,6 @@
+{
+    "dirs": ["res://test/unit", "res://test/integration"],
+    "include_subdirs": true,
+    "prefix": "test_",
+    "suffix": ".gd"
+}
