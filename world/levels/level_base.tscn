@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://nfv7a8im4jvk"]
+
+[ext_resource type="Script" uid="uid://b7atiipcly35b" path="res://world/levels/level_base.gd" id="1_8hxjk"]
+[ext_resource type="Script" uid="uid://c4vb23nn70qf7" path="res://world/levels/world_bounds.gd" id="2_nnb1h"]
+
+[node name="LevelBase" type="Node2D" unique_id=1597355426 node_paths=PackedStringArray("player_spawn")]
+script = ExtResource("1_8hxjk")
+player_spawn = NodePath("PlayerSpawn")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=480328743]
+
+[node name="PlayerSpawn" type="Node2D" parent="." unique_id=1645169674]
+
+[node name="WorldBounds" type="Area2D" parent="." unique_id=1640786864]
+collision_layer = 0
+collision_mask = 12
+script = ExtResource("2_nnb1h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBounds" unique_id=1892995946]
+
+[connection signal="body_entered" from="WorldBounds" to="WorldBounds" method="_on_body_entered"]

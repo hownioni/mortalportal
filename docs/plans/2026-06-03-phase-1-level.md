@@ -182,63 +182,74 @@ git commit -m "Phase 1 Task D: LevelController lifecycle"
 
 ---
 
-## Task 4: Assemble `Level1.tscn` (user, in the Godot editor)
+## Task 4: Assemble `level_base.tscn` + `level_1.tscn` (user, in the Godot editor)
 
-Scene creation is the user's responsibility. This is the step-by-step editor guide for the
-first concrete level. It extends `LevelBase` and contains the spawn, the kill volume, and at
-least one portal-placeable surface so the Phase 1 checkpoint can place portals.
+Scene creation is the user's responsibility. Uses **scene inheritance** (matches r-a-0):
+`level_base.tscn` is the shared template; concrete levels inherit it and override geometry.
+The signal wiring and collision masks are set once in the base and inherited by all levels.
 
-**File:** `world/levels/level_1.tscn`
+**Files:** `world/levels/level_base.tscn`, `world/levels/level_1.tscn`
+
+### Sub-task A: Create `level_base.tscn` (the template)
 
 - [ ] **Step 1: Create the scene root**
   - Scene > New Scene > Other Node > `Node2D`.
-  - Attach the **existing** script `res://world/levels/level_base.gd` to the root (do not let
-    the editor generate a new one). The root is now a `LevelBase`.
-  - Rename the root to `Level1`.
-  - Save as `res://world/levels/level_1.tscn`.
+  - Attach the **existing** script `res://world/levels/level_base.gd` (do not generate a new one).
+  - Rename the root to `LevelBase`.
+  - Save as `res://world/levels/level_base.tscn`.
 
-- [ ] **Step 2: Add the player spawn**
+- [ ] **Step 2: Add TileMapLayer**
+  - Add child `TileMapLayer`, leave it named `TileMapLayer`.
+  - Leave tile set and tile data empty — configured per concrete level.
+
+- [ ] **Step 3: Add PlayerSpawn and wire the export**
   - Add child `Node2D`, rename to `PlayerSpawn`.
-  - Position it where the player should start (somewhere above the floor).
-  - Select the `Level1` root, and in the Inspector set **player_spawn** = the `PlayerSpawn`
-    node (drag it into the export slot). This satisfies the `LevelBase` contract.
+  - Select the `LevelBase` root > Inspector > **player_spawn** = drag `PlayerSpawn` in.
+    (Position left at origin — each concrete level overrides it.)
 
-- [ ] **Step 3: Add a floor / portal-placeable surface**
-  - Add child `StaticBody2D`, rename to e.g. `Floor`.
-  - **Collision layer:** check **layer 1** (player collision) **and layer 5** (PortalSurface).
-    Numeric value **17**. Layer 1 lets the player walk on it (player `collision_mask = 3`);
-    layer 5 (value 16) lets the portal gun ray (`PORTAL_SURFACE_MASK = 16`) place portals on
-    it. A bare layer 1 would be walkable but **portals could not be placed** — this matches
-    r-a-0's `level_0.tscn` floor (`collision_layer = 17`), not the contract's loose "layer 1".
-  - **Collision mask:** `0` (a static floor detects nothing).
-  - Add a `CollisionShape2D` child with a `RectangleShape2D` sized to the floor.
-  - Add walls the same way if desired (same layer 17 so they are portal-placeable).
-
-- [ ] **Step 4: Add the world bounds (kill volume)**
+- [ ] **Step 4: Add the WorldBounds kill volume**
   - Add child `Area2D`, rename to `WorldBounds`.
   - Attach the **existing** script `res://world/levels/world_bounds.gd`.
-  - **Collision layer:** `0`. **Collision mask:** check **Player (layer 3)** and
-    **PortalEntities (layer 4)**. Numeric value **12** — this is what detects the falling
-    player (whose `collision_layer = 12`).
-  - Add a `CollisionShape2D` child, a wide `RectangleShape2D`, positioned **below** the floor
-    so falling out of the level enters it.
-  - **Wire the signal:** select `WorldBounds`, Node panel > Signals > `body_entered` >
-    Connect, target the `WorldBounds` node's own `_on_body_entered` method (it already exists
-    in the attached script — do not generate a new method). Leave "Deferred" unchecked; the
-    script already defers `die()` via `call_deferred`.
+  - **Collision layer:** `0`. **Collision mask:** `12` (layers 3+4: Player + PortalEntities).
+  - Add a `CollisionShape2D` child — leave the shape **empty** here; sized per concrete level.
+  - **Wire the signal:** select `WorldBounds`, Node panel > Signals > `body_entered` > Connect
+    to `WorldBounds._on_body_entered` (method already exists — do not generate a new one).
+    Leave "Deferred" unchecked; the script defers `die()` via `call_deferred`.
 
-- [ ] **Step 5: Save**
-  - Save the scene (`Ctrl+S`).
+- [ ] **Step 5: Save** (`Ctrl+S`).
 
-- [ ] **Step 6: Import sanity check**
-  - Confirm no script errors on `Level1`, `WorldBounds`, or `Floor`. Confirm the `Level1` root
-    shows **player_spawn** populated in the Inspector.
+### Sub-task B: Create `level_1.tscn` (inheriting from the template)
 
-- [ ] **Step 7: Commit (user)**
+- [ ] **Step 6: Create inherited scene**
+  - Scene > New Inherited Scene > pick `res://world/levels/level_base.tscn`.
+  - Rename root to `Level1`.
+  - Save as `res://world/levels/level_1.tscn`.
+
+- [ ] **Step 7: Configure the TileMapLayer (floor + walls)**
+  - Select the inherited `TileMapLayer`.
+  - Assign (or create) a `TileSet` in the Inspector. The TileSet needs two physics layers:
+    - Physics layer 0: collision_layer `1`, mask `0` (player walks on it)
+    - Physics layer 1: collision_layer `17`, mask `0` (portal gun ray can place portals)
+  - Paint the floor and walls using the tile atlas.
+
+- [ ] **Step 8: Position PlayerSpawn**
+  - Select `PlayerSpawn`, move it above the floor.
+
+- [ ] **Step 9: Size the WorldBounds kill volume**
+  - Select `WorldBounds/CollisionShape2D`, assign a wide `RectangleShape2D` positioned
+    **below** the floor so falling players enter it.
+
+- [ ] **Step 10: Save** (`Ctrl+S`).
+
+- [ ] **Step 11: Sanity check**
+  - No script errors on `Level1` or `WorldBounds`.
+  - `Level1` root shows **player_spawn** populated in Inspector (inherited from base).
+
+- [ ] **Step 12: Commit (user)**
 
 ```bash
-git add world/levels/level_1.tscn
-git commit -m "Phase 1 Task D: Level1 scene"
+git add world/levels/level_base.tscn world/levels/level_1.tscn
+git commit -m "Phase 1 Task D: LevelBase template + Level1 scene"
 ```
 
 ---
@@ -247,9 +258,10 @@ git commit -m "Phase 1 Task D: Level1 scene"
 
 - `world/levels/level_base.gd`, `world/levels/world_bounds.gd`, `world/level_controller.gd` all
   pass the project-wide `--import` parse check with no `SCRIPT ERROR` / `Parse Error` output.
-- `world/levels/level_1.tscn` extends `LevelBase`, wires `player_spawn`, has a portal-placeable
-  floor (layer 17), and a `WorldBounds` kill volume (mask 12) below it with `body_entered`
-  wired to `_on_body_entered`.
+- `world/levels/level_base.tscn` has `TileMapLayer` + `PlayerSpawn` + `WorldBounds` (mask 12, signal wired).
+- `world/levels/level_1.tscn` inherits `level_base.tscn`, positions `PlayerSpawn`, sizes
+  `WorldBounds` kill volume below the floor, and has a `TileMapLayer` with a TileSet
+  configured for collision_layer 17 (portal-placeable).
 - Functional death/reset, out-of-bounds kill, and level cycling are verified at the Phase 1
   checkpoint (end of Task E), not here — `Main.tscn` and the `LevelController` wiring do not
   exist until Task E. This is expected.
