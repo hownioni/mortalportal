@@ -154,3 +154,5 @@ shape = SubResource("RectangleShape2D_rpf03")
 position = Vector2(-0.5, 5)
 shape = SubResource("RectangleShape2D_x5dtk")
 disabled = true
+
+[connection signal="hit" from="Hitbox" to="." method="die" flags=3]

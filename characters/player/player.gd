@@ -30,7 +30,6 @@ var _crouching := false
 
 func _ready() -> void:
     add_to_group("player")
-    _hitbox.hit.connect(die, CONNECT_DEFERRED)
 
 
 func _physics_process(delta: float) -> void:
