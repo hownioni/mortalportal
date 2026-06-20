@@ -35,3 +35,21 @@ func test_overlay_flip_v_below_threshold() -> void:
 
 func test_overlay_flip_v_above_threshold() -> void:
 	assert_true(ViewportMath.overlay_flip_v(PI / 2.0 + 0.01))
+
+func test_camera_target_zero_velocity() -> void:
+	var result := ViewportMath.camera_target_position(
+		Vector2.ZERO, Vector2(1920, 1080), Vector2.ZERO, 0.2, 50.0,
+	)
+	assert_eq(result, Vector2(960, 540))
+
+func test_camera_target_below_clamp() -> void:
+	var result := ViewportMath.camera_target_position(
+		Vector2.ZERO, Vector2(1920, 1080), Vector2(100, 0), 0.2, 50.0,
+	)
+	assert_eq(result, Vector2(980, 540))
+
+func test_camera_target_above_clamp() -> void:
+	var result := ViewportMath.camera_target_position(
+		Vector2.ZERO, Vector2(1920, 1080), Vector2(1000, -1000), 0.2, 50.0,
+	)
+	assert_eq(result, Vector2(1010, 490))

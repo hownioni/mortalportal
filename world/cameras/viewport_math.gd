@@ -10,3 +10,13 @@ static func overlay_position(
 
 static func overlay_flip_v(rotation: float) -> bool:
 	return rotation > PI / 2.0 or rotation < -PI / 2.0
+
+static func camera_target_position(
+	container_pos: Vector2, container_size: Vector2,
+	player_velocity: Vector2, velocity_influence: float, max_offset: float,
+) -> Vector2:
+	var center := container_pos + container_size / 2.0
+	var offset := player_velocity * velocity_influence
+	offset.x = clampf(offset.x, -max_offset, max_offset)
+	offset.y = clampf(offset.y, -max_offset, max_offset)
+	return center + offset
