@@ -11,8 +11,16 @@ config_version=5
 [application]
 
 config/name="Mortal Portal"
+run/main_scene="uid://djp4cas7tjayw"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/stretch/mode="viewport"
+window/stretch/scale_mode="integer"
 
 [editor]
 
@@ -77,14 +85,6 @@ inc_lvl_test={
 [physics]
 
 3d/physics_engine="Jolt Physics"
-
-[display]
-
-window/size/viewport_width=1280
-window/size/viewport_height=720
-window/stretch/mode="viewport"
-window/stretch/aspect="keep"
-window/stretch/scale_mode="integer"
 
 [rendering]
 

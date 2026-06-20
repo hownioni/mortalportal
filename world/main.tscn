@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://djp4cas7tjayw"]
+
+[ext_resource type="PackedScene" uid="uid://wc3shtlpb0kq" path="res://characters/player/player.tscn" id="1_gu74f"]
+[ext_resource type="Script" uid="uid://bahjwq5mpdfas" path="res://world/level_controller.gd" id="2_gu74f"]
+[ext_resource type="PackedScene" uid="uid://btcggxiueeiou" path="res://world/levels/level_1.tscn" id="3_04q08"]
+[ext_resource type="Script" uid="uid://ddnax7myxkquk" path="res://world/cameras/low_res_camera.gd" id="4_qnd6n"]
+[ext_resource type="Script" uid="uid://da2c22xcrxmyb" path="res://world/cameras/high_res_camera.gd" id="5_op3e8"]
+[ext_resource type="Texture2D" uid="uid://cqjv3yb2n801r" path="res://characters/player/assets/portal_arm.png" id="6_vid1e"]
+[ext_resource type="Script" uid="uid://7ent0pf5wd82" path="res://characters/player/portal_arm.gd" id="7_tp5tb"]
+
+[node name="Main" type="Node2D" unique_id=1055078949]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1555283330]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=996465963]
+disable_3d = true
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+audio_listener_enable_2d = true
+size = Vector2i(1280, 720)
+render_target_update_mode = 4
+
+[node name="Player" parent="SubViewportContainer/SubViewport" unique_id=1207380948 instance=ExtResource("1_gu74f")]
+z_index = 3
+
+[node name="LevelController" type="Node" parent="SubViewportContainer/SubViewport" unique_id=1916013037 node_paths=PackedStringArray("player")]
+script = ExtResource("2_gu74f")
+levels = Array[PackedScene]([ExtResource("3_04q08")])
+player = NodePath("../Player")
+metadata/_custom_type_script = "uid://bahjwq5mpdfas"
+
+[node name="LowResCamera" type="Camera2D" parent="SubViewportContainer/SubViewport" unique_id=115314385 node_paths=PackedStringArray("follow_target")]
+script = ExtResource("4_qnd6n")
+follow_target = NodePath("../Player")
+metadata/_custom_type_script = "uid://ddnax7myxkquk"
+
+[node name="HighResCamera" type="Camera2D" parent="." unique_id=1936766204 node_paths=PackedStringArray("player", "sub_viewport_container")]
+zoom = Vector2(2, 2)
+script = ExtResource("5_op3e8")
+player = NodePath("../SubViewportContainer/SubViewport/Player")
+sub_viewport_container = NodePath("../SubViewportContainer")
+metadata/_custom_type_script = "uid://da2c22xcrxmyb"
+
+[node name="PortalArm" type="Sprite2D" parent="." unique_id=462000915 node_paths=PackedStringArray("player", "sub_viewport_container", "sub_viewport")]
+texture = ExtResource("6_vid1e")
+offset = Vector2(5, 0)
+script = ExtResource("7_tp5tb")
+player = NodePath("../SubViewportContainer/SubViewport/Player")
+sub_viewport_container = NodePath("../SubViewportContainer")
+sub_viewport = NodePath("../SubViewportContainer/SubViewport")
+metadata/_custom_type_script = "uid://7ent0pf5wd82"
