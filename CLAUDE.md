@@ -119,6 +119,7 @@ GUT (`addons/gut/`). Full policy: `@docs/testing-conventions.md`.
 
 ## GDScript Conventions
 
+- **Indentation:** 4 spaces, never tabs. Convert any tab-indented file to spaces when you modify it.
 - **Naming:** `snake_case` for variables/functions, `PascalCase` for classes/nodes, `ALL_CAPS` for constants.
 - **Signals** declared at the top of the file, before variables.
 - **No magic numbers.** Every numeric constant gets a named `const` or a Resource field.
