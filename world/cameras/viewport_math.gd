@@ -7,3 +7,6 @@ static func overlay_position(
 	var scale := container_size / subviewport_size
 	var center := container_pos + container_size / 2.0
 	return center + gun_offset * scale
+
+static func overlay_flip_v(rotation: float) -> bool:
+	return rotation > PI / 2.0 or rotation < -PI / 2.0

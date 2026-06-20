@@ -23,3 +23,15 @@ func test_overlay_position_respects_container_origin() -> void:
 		Vector2(100, 50), Vector2(1920, 1080), Vector2(1920, 1080), Vector2.ZERO,
 	)
 	assert_eq(result, Vector2(1060, 590))
+
+func test_overlay_flip_v_aiming_right() -> void:
+	assert_false(ViewportMath.overlay_flip_v(0.0))
+
+func test_overlay_flip_v_aiming_left() -> void:
+	assert_true(ViewportMath.overlay_flip_v(PI))
+
+func test_overlay_flip_v_below_threshold() -> void:
+	assert_false(ViewportMath.overlay_flip_v(PI / 2.0 - 0.01))
+
+func test_overlay_flip_v_above_threshold() -> void:
+	assert_true(ViewportMath.overlay_flip_v(PI / 2.0 + 0.01))
