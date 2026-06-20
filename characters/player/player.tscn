@@ -103,7 +103,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"run",
-"speed": 5.0
+"speed": 10.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ixbpm"]
@@ -122,7 +122,7 @@ script = ExtResource("1_ixbpm")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1357663587]
 sprite_frames = SubResource("SpriteFrames_fpo3a")
-animation = &"idle"
+animation = &"run"
 
 [node name="BodyShape" type="CollisionShape2D" parent="." unique_id=2080858910]
 position = Vector2(-0.5, 1)

@@ -15,9 +15,9 @@ separation = Vector2i(1, 1)
 1:0/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_oiw5k"]
-physics_layer_0/collision_layer = 17
+physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 0
-physics_layer_1/collision_layer = 0
+physics_layer_1/collision_layer = 17
 physics_layer_1/collision_mask = 0
 sources/0 = SubResource("TileSetAtlasSource_gs0yp")
 pattern_0 = SubResource("TileMapPattern_3o5in")
@@ -31,7 +31,7 @@ tile_map_data = PackedByteArray("AAABAAcAAAAAAAAAAAABAAgAAAAAAAAAAAABAAkAAAAAAAA
 tile_set = SubResource("TileSet_oiw5k")
 
 [node name="PlayerSpawn" parent="." index="1" unique_id=1645169674]
-position = Vector2(208, 112)
+position = Vector2(208, 80)
 
 [node name="WorldBounds" parent="." index="2" unique_id=1640786864]
 position = Vector2(213, 217)
